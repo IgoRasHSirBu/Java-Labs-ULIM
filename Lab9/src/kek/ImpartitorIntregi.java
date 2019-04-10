@@ -15,7 +15,7 @@ public class ImpartitorIntregi {
 
         try {
             return (this.nr1 / this.nr2);
-        } catch (ArithmeticException exc) {// :3
+        } catch (ArithmeticException exc) {
 
             throw new ArithmeticException("Exceptie! impartire la zero! Clasa ImpartitorIntregi");
 
