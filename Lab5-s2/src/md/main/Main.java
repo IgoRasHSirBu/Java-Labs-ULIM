@@ -55,16 +55,16 @@ public class Main {
 				meniu.clrscr();
 				tariFile.checkAssign();
 				meniu.opAfisareMeniu();
-				tariFile.afisareFisier();
+//				tariFile.afisareFisier();
 				break;
 			case 3:// op adaugare student
 				meniu.clrscr();
 				tariFile.checkAssign();
-				meniu.opAddStudentsMenu();
+				meniu.opAddCountriesMenu();
 
 				if (tariFile.fileIsAssigned) {// remake
 					do {
-						oper = meniu.opAddStudentMenu();
+						oper = meniu.opAddCountryMenu();
 						switch (oper) {
 						case 1:
 //		TODO : 					tariFile.addDateInFisier();
@@ -137,7 +137,7 @@ public class Main {
 					break;
 				case 2:
 					meniu.clrscr();
-					meniu.opEliminareStudentMeniu();
+					meniu.opEliminareCountryMeniu();
 //		TODO : 		tariFile.eliminareStudent();
 					break;
 				case 9:

@@ -1,11 +1,15 @@
 package md.file;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+import md.country.AsianCountry;
+import md.country.EuropeanCountry;
+import md.country.EuropeanUnionCountry;
+import md.factory.CountryFactory;
 import md.main.Menu;
 
 public class FisierTari {
@@ -40,86 +44,71 @@ public class FisierTari {
 			meniu.pauseMenu();
 		}
 	}
+//TODO: read from deseralization
+//	public void afisareFisier() throws IOException {
+//
+//		if (fileIsAssigned) {
+//			System.out.println("[----------------------------------------------------]");
+//
+//			FileReader fileReader = new FileReader(assignedFile);
+//			BufferedReader fileReaderBuffer = new BufferedReader(fileReader);
+//
+//			while (fileReaderBuffer.ready()) {
+//				System.out.println(fileReaderBuffer.readLine());
+//			}
+//
+//			fileReaderBuffer.close();
+//			meniu.pauseMenu();
+//		} else {
+//			meniu.errorOP(5);
+//			meniu.pauseMenu();
+//		}
+//	}
 
-	public void afisareFisier() throws IOException {
+	void addDateInFisier() throws IOException {
 
+		File dateInFile;
 		if (fileIsAssigned) {
-			System.out.println("[----------------------------------------------------]");
 
-			FileReader fileReader = new FileReader(assignedFile);
-			BufferedReader fileReaderBuffer = new BufferedReader(fileReader);
+			dateInFile = new File(assignedFile.getName());
 
-			while (fileReaderBuffer.ready()) {
-				System.out.println(fileReaderBuffer.readLine());
+			FileOutputStream fileOutStream = new FileOutputStream(dateInFile);
+			ObjectOutputStream objOutStream = new ObjectOutputStream(fileOutStream);
+
+			CountryFactory countryFactory = new CountryFactory();
+			EuropeanCountry europeanCountry;
+			AsianCountry asianCountry;
+			EuropeanUnionCountry euUnionCountry;
+
+			meniu.clrscr();
+			System.out.println("------------------ [Introducere date] ----------------");
+
+			System.out.println("Introduceți tipul Țării: ");
+			System.out.println("EuropeanCountry\nAsianCountry\nEuropeanUnionCountry");
+			String typeCountry = read.nextLine();
+
+			Object country = countryFactory.getCountry(typeCountry);
+			if (country instanceof EuropeanCountry) {
+				europeanCountry = new EuropeanCountry();
+			}
+			if (country instanceof AsianCountry) {
+				asianCountry = new AsianCountry();
+			}
+			if (country instanceof EuropeanUnionCountry) {
+				euUnionCountry = new EuropeanUnionCountry();
 			}
 
-			fileReaderBuffer.close();
+			System.out.println("------------------------------------------------------");
+			System.out.println(">A fost introdusă o țară");
 			meniu.pauseMenu();
+			meniu.clrscr();
+
+			objOutStream.close();
 		} else {
-			meniu.errorOP(5);
+			meniu.errorOP(3);
 			meniu.pauseMenu();
 		}
 	}
-
-//      void addDateInFisier() throws IOException {
-//
-//          File dateInFile;
-//          if (fileIsAssigned) {
-//
-//              dateInFile = new File(assignedFile.getName());
-//              FileWriter fileWritter = new FileWriter(dateInFile, true);//true pentru a face append la continutul deja existent in fisier
-//              BufferedWriter fileWritterBuffer = new BufferedWriter(fileWritter);
-//
-//              String dataStudent;
-//              int dataInt;
-//              meniu.clrscr();
-//              System.out.println("------------------ [Introducere date] ----------------");
-//
-//              System.out.println("Introduceți numărul studentului: ");
-//              dataInt = read.nextInt();
-//              read.nextLine();
-//              fileWritterBuffer.write(dataInt + " \t");
-//
-//              System.out.println("Introduceți numele studentului: ");
-//              dataStudent = read.nextLine();
-//              fileWritterBuffer.write(dataStudent + " \t");
-//
-//              System.out.println("Introduceți prenumele studentului: ");
-//              dataStudent = read.nextLine();
-//              fileWritterBuffer.write(dataStudent + " \t");
-//
-//              System.out.println("Introduceți localitatea studentului: ");
-//              dataStudent = read.nextLine();
-//              fileWritterBuffer.write(dataStudent + " \t");
-//
-//              System.out.println("Introduceți adresa studentului: ");
-//
-//              dataStudent = read.nextLine();
-//              fileWritterBuffer.write(dataStudent + " \t");
-//
-//              System.out.println("Introduceți telefonul studentului: ");
-//              dataStudent = read.nextLine();
-//              fileWritterBuffer.write(dataStudent + " \t");
-//
-//              System.out.println("Introduceți nota medie a studentului: ");
-//              dataStudent = read.nextLine();
-//              fileWritterBuffer.write(dataStudent + " ");
-//
-//              fileWritterBuffer.newLine();
-//
-//              System.out.println("------------------------------------------------------");
-//              System.out.println(">A fost introdus un student");
-//              meniu.pauseMenu();
-//              meniu.clrscr();
-//
-//              fileWritterBuffer.flush();
-//              fileWritterBuffer.close();
-//
-//          } else {
-//              meniu.errorOP(3);
-//              meniu.pauseMenu();
-//          }
-//      }
 
 //      void prelucrareDateDinFisierV1() throws IOException {//afisarea studentilor din chisinau V1(cu folosirea metodei contains
 //
