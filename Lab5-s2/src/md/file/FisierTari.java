@@ -74,7 +74,7 @@ public class FisierTari {
 
 			dateInFile = new File(assignedFile.getName());
 
-			FileOutputStream fileOutStream = new FileOutputStream(dateInFile);
+			FileOutputStream fileOutStream = new FileOutputStream(dateInFile, true);
 			ObjectOutputStream objOutStream = new ObjectOutputStream(fileOutStream);
 
 			CountryFactory countryFactory = new CountryFactory();
@@ -86,40 +86,40 @@ public class FisierTari {
 			System.out.println("------------------ [Introducere date] ----------------");
 
 			System.out.println(">>Introduceți tipul Țării:");
-			System.out.println(">\"EuropeanCountry\"\n>\"AsianCountry\"\n>\"EuropeanUnionCountry\"\n>\"Country\" (alt tip)");
-			
+			System.out.println(
+					">\"EuropeanCountry\"\n>\"AsianCountry\"\n>\"EuropeanUnionCountry\"\n>\"Country\" (alt tip)");
+
 			String typeCountry = read.nextLine();
 
 			Country country = countryFactory.getCountry(typeCountry);
-			
-			if(country != null) {
+
+			if (country != null) {
 				System.out.println(">Introduceți numele Țării:");
 				country.setName(read.nextLine());
-				
-				System.out.println(">Introduceți capitala Țării:");//hmmm
+
+				System.out.println(">Introduceți capitala Țării:");// hmmm
 				country.setCapital(read.nextLine());
-				
+
 				System.out.println(">Introduceți continentul Țării:");
 				country.setContinent(read.nextLine());
-				
+
 				System.out.println(">Introduceți populația Țării:");
 				country.setPopulation(read.nextDouble());
 				read.nextLine();
-				
+
 				System.out.println(">Introduceți liderul Țării:");
 				country.setLeader(read.nextLine());
-				
+
 				System.out.println(">Introduceți guvernul Țării:");
 				country.setGovernment(read.nextLine());
-				
+
 			} else {
 				meniu.errorOP(6);
 				meniu.pauseMenu();
 			}
-			
+
 			objOutStream.writeObject(country);
-			
-			
+
 //			if (country instanceof EuropeanCountry) {
 //				europeanCountry = new EuropeanCountry();
 //			}
