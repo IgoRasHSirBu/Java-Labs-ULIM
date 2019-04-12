@@ -56,7 +56,7 @@ public class Main {
 				meniu.clrscr();
 				tariFile.checkAssign();
 				meniu.opAfisareMeniu();
-//				tariFile.afisareFisier();
+				tariFile.afisareFisier();
 				break;
 			case 3:// op adaugare tara
 				meniu.clrscr();

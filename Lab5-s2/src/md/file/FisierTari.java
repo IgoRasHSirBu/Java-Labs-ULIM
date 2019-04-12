@@ -1,8 +1,10 @@
 package md.file;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
@@ -46,26 +48,49 @@ public class FisierTari {
 			meniu.pauseMenu();
 		}
 	}
-//TODO: read from deseralization
-//	public void afisareFisier() throws IOException {
-//
-//		if (fileIsAssigned) {
-//			System.out.println("[----------------------------------------------------]");
-//
-//			FileReader fileReader = new FileReader(assignedFile);
-//			BufferedReader fileReaderBuffer = new BufferedReader(fileReader);
-//
-//			while (fileReaderBuffer.ready()) {
-//				System.out.println(fileReaderBuffer.readLine());
-//			}
-//
-//			fileReaderBuffer.close();
-//			meniu.pauseMenu();
-//		} else {
-//			meniu.errorOP(5);
-//			meniu.pauseMenu();
-//		}
-//	}
+
+	public void afisareFisier() throws IOException {//TODO: for all file dew it
+
+		if (fileIsAssigned) {
+			System.out.println("[----------------------------------------------------]");
+
+			FileInputStream fileInputStream = new FileInputStream(fileDeTari);
+			ObjectInputStream objInputStream = new ObjectInputStream(fileInputStream);
+
+			Country country;
+			try {
+				country = (Country) objInputStream.readObject();
+				
+				if (country instanceof Country) {
+					country.showDataOfCountry();
+				}
+				if (country instanceof EuropeanCountry) {
+					EuropeanCountry euc;
+					euc = (EuropeanCountry) country;
+					euc.showDataOfCountry();
+				}
+				if (country instanceof AsianCountry) {
+					AsianCountry euc;
+					euc = (AsianCountry) country;
+					euc.showDataOfCountry();
+				}
+				if (country instanceof EuropeanUnionCountry) {
+					EuropeanUnionCountry euc;
+					euc = (EuropeanUnionCountry) country;
+					euc.showDataOfCountry();
+				}
+
+			} catch (ClassNotFoundException e) {
+				System.out.println("EROOR CLASS");
+			}
+
+			objInputStream.close();
+			meniu.pauseMenu();
+		} else {
+			meniu.errorOP(5);
+			meniu.pauseMenu();
+		}
+	}
 
 	public void addDateInFisier() throws IOException {
 
