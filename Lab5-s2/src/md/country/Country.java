@@ -1,6 +1,8 @@
 package md.country;
 
-abstract public class Country {
+import java.io.Serializable;
+
+public class Country implements Serializable {
 
 	private String name;
 	private double population;
@@ -10,11 +12,11 @@ abstract public class Country {
 	private String leader;
 
 	// Constructors
-	Country() {
+	public Country() {// exemple de constructori
 		this.name = this.capital = this.continent = this.government = this.leader = "Unknown";
 	}
 
-	Country(String name, double population, String capital, String continent, String government, String leader) {
+	public Country(String name, double population, String capital, String continent, String government, String leader) {
 		if (name.length() > 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
 		} else {
@@ -47,7 +49,7 @@ abstract public class Country {
 		}
 	}
 
-	Country(String name, double population) {
+	public Country(String name, double population) {
 		this();
 		if (name.length() > 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
@@ -59,8 +61,8 @@ abstract public class Country {
 		}
 	}
 
-	Country(String name) {
-		this();
+	public Country(String name) {
+		this();// initializeaza campuriile
 		if (name.length() > 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
 		} else {

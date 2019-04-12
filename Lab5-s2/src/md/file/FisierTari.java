@@ -14,7 +14,7 @@ public class FisierTari {
 	File assignedFile;
 	public boolean fileIsAssigned = false;
 	Scanner read = new Scanner(System.in);
-	String fileName = "countries.txt";// default
+	String fileName = "countries";// default
 	Menu meniu = new Menu();
 
 	public void creareFisier(String str) throws IOException {// creare file

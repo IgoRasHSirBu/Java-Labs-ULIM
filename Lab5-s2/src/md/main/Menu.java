@@ -26,7 +26,7 @@ import java.util.Scanner;
 
          System.out.println("[================ Crearea fișierului ================]");
          System.out.println("Introduceți 1 Pentru a crea un fișier cu un nume propriu");
-         System.out.println("Introduceți 2 Pentru a crea un fișier cu numele \"countries.txt\"");
+         System.out.println("Introduceți 2 Pentru a crea un fișier cu numele \"countries\"");
          System.out.println("Introduceți 9 Pentru a reveni in meniul principal");
          System.out.println("Introduceți 0 Pentru ieșirea din program");
          System.out.println("------------------------------------------------------");
@@ -67,7 +67,7 @@ import java.util.Scanner;
 
          System.out.println("[================ Eliminarea datelor ================]");
          System.out.println("Introduceți 1 Pentru a șterge fișierul");
-         System.out.println("Introduceți 2 Pentru a șterge unei Țări");
+         System.out.println("Introduceți 2 Pentru a șterge o Țără");
          System.out.println("Introduceți 9 Pentru a reveni in meniul principal");
          System.out.println("Introduceți 0 Pentru a ieși din program");
          System.out.println("------------------------------------------------------");

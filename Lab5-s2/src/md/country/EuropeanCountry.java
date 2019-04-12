@@ -11,8 +11,8 @@ public class EuropeanCountry extends Country {
 		currency = "Unknown";
 	}
 
-	public EuropeanCountry(String name, double population, String capital, String continent, String government,
-			String leader, double area, String currency) {
+	EuropeanCountry(String name, double population, String capital, String continent, String government, String leader,
+			double area, String currency) {
 		super(name, population, capital, continent, government, leader);
 		if (currency.length() >= 3) {
 			this.currency = currency.substring(0, 3).toUpperCase();

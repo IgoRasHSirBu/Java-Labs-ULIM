@@ -37,7 +37,7 @@ public class Main {
 					meniu.clrscr();
 					tariFile.checkAssign();
 					meniu.opCreareFileMenuF2();
-					tariFile.creareFisier("studenti.txt");
+					tariFile.creareFisier("countries");
 					break;
 				case 9:
 					meniu.clrscr();
