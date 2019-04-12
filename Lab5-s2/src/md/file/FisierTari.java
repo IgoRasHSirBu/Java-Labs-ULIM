@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import md.country.AsianCountry;
+import md.country.Country;
 import md.country.EuropeanCountry;
 import md.country.EuropeanUnionCountry;
 import md.factory.CountryFactory;
@@ -33,6 +34,7 @@ public class FisierTari {
 			System.out.println(">Doriți asocierea cu acest fișier?\n [ y ] DA [ n ] Nu : ");
 
 			char op = read.next().charAt(0);
+			read.nextLine();
 
 			if (op == 'y' || op == 'Y') {
 				assignFile(str);
@@ -65,7 +67,7 @@ public class FisierTari {
 //		}
 //	}
 
-	void addDateInFisier() throws IOException {
+	public void addDateInFisier() throws IOException {
 
 		File dateInFile;
 		if (fileIsAssigned) {
@@ -83,20 +85,50 @@ public class FisierTari {
 			meniu.clrscr();
 			System.out.println("------------------ [Introducere date] ----------------");
 
-			System.out.println("Introduceți tipul Țării: ");
-			System.out.println("EuropeanCountry\nAsianCountry\nEuropeanUnionCountry");
+			System.out.println(">>Introduceți tipul Țării:");
+			System.out.println(">\"EuropeanCountry\"\n>\"AsianCountry\"\n>\"EuropeanUnionCountry\"\n>\"Country\" (alt tip)");
+			
 			String typeCountry = read.nextLine();
 
-			Object country = countryFactory.getCountry(typeCountry);
-			if (country instanceof EuropeanCountry) {
-				europeanCountry = new EuropeanCountry();
+			Country country = countryFactory.getCountry(typeCountry);
+			
+			if(country != null) {
+				System.out.println(">Introduceți numele Țării:");
+				country.setName(read.nextLine());
+				
+				System.out.println(">Introduceți capitala Țării:");//hmmm
+				country.setCapital(read.nextLine());
+				
+				System.out.println(">Introduceți continentul Țării:");
+				country.setContinent(read.nextLine());
+				
+				System.out.println(">Introduceți populația Țării:");
+				country.setPopulation(read.nextDouble());
+				read.nextLine();
+				
+				System.out.println(">Introduceți liderul Țării:");
+				country.setLeader(read.nextLine());
+				
+				System.out.println(">Introduceți guvernul Țării:");
+				country.setGovernment(read.nextLine());
+				
+			} else {
+				meniu.errorOP(6);
+				meniu.pauseMenu();
 			}
-			if (country instanceof AsianCountry) {
-				asianCountry = new AsianCountry();
-			}
-			if (country instanceof EuropeanUnionCountry) {
-				euUnionCountry = new EuropeanUnionCountry();
-			}
+			
+			objOutStream.writeObject(country);
+			
+			
+//			if (country instanceof EuropeanCountry) {
+//				europeanCountry = new EuropeanCountry();
+//			}
+//			if (country instanceof AsianCountry) {
+//				asianCountry = new AsianCountry();
+//			}
+//			if (country instanceof EuropeanUnionCountry) {
+//				euUnionCountry = new EuropeanUnionCountry();
+//			}
 
 			System.out.println("------------------------------------------------------");
 			System.out.println(">A fost introdusă o țară");

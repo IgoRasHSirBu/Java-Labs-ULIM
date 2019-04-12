@@ -31,6 +31,7 @@ public class Main {
 					tariFile.checkAssign();
 					meniu.opCreareFileMenuF1();
 					nameFile = read.next();
+					read.nextLine();
 					tariFile.creareFisier(nameFile);
 					break;
 				case 2:
@@ -57,7 +58,7 @@ public class Main {
 				meniu.opAfisareMeniu();
 //				tariFile.afisareFisier();
 				break;
-			case 3:// op adaugare student
+			case 3:// op adaugare tara
 				meniu.clrscr();
 				tariFile.checkAssign();
 				meniu.opAddCountriesMenu();
@@ -67,7 +68,7 @@ public class Main {
 						oper = meniu.opAddCountryMenu();
 						switch (oper) {
 						case 1:
-//		TODO : 					tariFile.addDateInFisier();
+							TODO: tariFile.addDateInFisier();
 							break;
 						case 2:
 							break;

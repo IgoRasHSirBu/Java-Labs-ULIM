@@ -54,7 +54,7 @@ public class Menu {
 	int opAddCountryMenu() {
 
 		System.out.println("[========= [Adăugarea datelor despre Țară] ==========]");
-		System.out.println("Introduceți 1 Pentru a adăuga unei Țări");
+		System.out.println("Introduceți 1 Pentru a adăuga o Țară");
 		System.out.println("Introduceți 9 Pentru a reveni in meniul principal");
 		System.out.println("Introduceți 0 Pentru a ieși din program");
 		System.out.println("------------------------------------------------------");
@@ -142,6 +142,10 @@ public class Menu {
 		case 5:
 			System.out.println("[----------------------------------------------------]");
 			System.out.println(" >Eroare nu s-a putut afișa, nu este asociat nici-un fișier!");
+			break;
+		case 6:
+			System.out.println("[----------------------------------------------------]");
+			System.out.println(" >Eroare nu s-a putut introduce Țara!");
 		}
 	}
 
