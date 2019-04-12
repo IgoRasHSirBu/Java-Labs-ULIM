@@ -97,11 +97,13 @@ public class FisierTari {
 				System.out.println(">Introduceți numele Țării:");
 				country.setName(read.nextLine());
 
-				System.out.println(">Introduceți capitala Țării:");// hmmm
+				System.out.println(">Introduceți capitala Țării:");
 				country.setCapital(read.nextLine());
 
-				System.out.println(">Introduceți continentul Țării:");
-				country.setContinent(read.nextLine());
+				if (!(country instanceof Country)) {
+					System.out.println(">Introduceți continentul Țării:");
+					country.setContinent(read.nextLine());
+				}
 
 				System.out.println(">Introduceți populația Țării:");
 				country.setPopulation(read.nextDouble());
@@ -113,28 +115,53 @@ public class FisierTari {
 				System.out.println(">Introduceți guvernul Țării:");
 				country.setGovernment(read.nextLine());
 
+				if (country instanceof EuropeanCountry) {
+					europeanCountry = (EuropeanCountry) country;
+
+					System.out.println(">Introduceți valuta Țării:");
+					europeanCountry.setCurrency(read.nextLine());
+
+					System.out.println(">Introduceți suprafața Țării:");
+					europeanCountry.setArea(read.nextDouble());
+					read.nextLine();
+
+				}
+				if (country instanceof AsianCountry) {
+					asianCountry = (AsianCountry) country;
+
+					System.out.println(">Introduceți valuta Țării:");
+					asianCountry.setCurrency(read.nextLine());
+
+					System.out.println(">Introduceți suprafața Țării:");
+					asianCountry.setArea(read.nextDouble());
+					read.nextLine();
+				}
+				if (country instanceof EuropeanUnionCountry) {
+					euUnionCountry = (EuropeanUnionCountry) country;
+
+					System.out.println(">Introduceți valuta Țării:");
+					euUnionCountry.setCurrency(read.nextLine());
+
+					System.out.println(">Introduceți suprafața Țării:");
+					euUnionCountry.setArea(read.nextDouble());
+					read.nextLine();
+
+					System.out.println(">Introduceți anul intrării în UE a Țării:");
+					euUnionCountry.setYearMember(read.nextInt());
+					read.nextLine();
+
+				}
+
+				objOutStream.writeObject(country);
+				System.out.println("------------------------------------------------------");
+				System.out.println(">A fost introdusă o țară");
+				meniu.pauseMenu();
+				meniu.clrscr();
+
 			} else {
 				meniu.errorOP(6);
 				meniu.pauseMenu();
 			}
-
-			objOutStream.writeObject(country);
-
-//			if (country instanceof EuropeanCountry) {
-//				europeanCountry = new EuropeanCountry();
-//			}
-//			if (country instanceof AsianCountry) {
-//				asianCountry = new AsianCountry();
-//			}
-//			if (country instanceof EuropeanUnionCountry) {
-//				euUnionCountry = new EuropeanUnionCountry();
-//			}
-
-			System.out.println("------------------------------------------------------");
-			System.out.println(">A fost introdusă o țară");
-			meniu.pauseMenu();
-			meniu.clrscr();
-
 			objOutStream.close();
 		} else {
 			meniu.errorOP(3);
