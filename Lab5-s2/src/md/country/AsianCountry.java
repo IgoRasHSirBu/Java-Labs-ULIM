@@ -6,12 +6,12 @@ public class AsianCountry extends Country {
     private String currency;
     private final String CONTINENT = "Asia";
 
-    AsianCountry() {//exemple de constructori
+    public AsianCountry() {//exemple de constructori
         area = 0.0;
         currency = "Unknown";
     }
 
-     AsianCountry(String name, double population, String capital, String continent, String government, String leader, double area, String currency) {
+    public AsianCountry(String name, double population, String capital, String continent, String government, String leader, double area, String currency) {
         super(name, population, capital, continent, government, leader);
         if (currency.length() >= 3) {
             this.currency = currency.substring(0,3).toUpperCase();
@@ -24,7 +24,7 @@ public class AsianCountry extends Country {
         super.setContinent(CONTINENT);
     }
 
-     AsianCountry(String name, double population, double area, String currency) {
+    public AsianCountry(String name, double population, double area, String currency) {
         super(name, population);
         if (currency.length() >= 3) {
             this.currency = currency.substring(0,3).toUpperCase();
@@ -37,7 +37,7 @@ public class AsianCountry extends Country {
         super.setContinent(CONTINENT);
     }
 
-     AsianCountry(String name, double area, String currency) {
+    public AsianCountry(String name, double area, String currency) {
         super(name);
         if (currency.length() >= 3) {
             this.currency = currency.substring(0,3).toUpperCase();
