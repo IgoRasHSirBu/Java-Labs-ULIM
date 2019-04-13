@@ -125,10 +125,8 @@ public class FisierTari {
 				System.out.println(">Introduceți capitala Țării:");
 				country.setCapital(read.nextLine());
 
-				if (!(country instanceof Country)) {
-					System.out.println(">Introduceți continentul Țării:");
-					country.setContinent(read.nextLine());
-				}
+				System.out.println(">Introduceți continentul Țării:");
+				country.setContinent(read.nextLine());
 
 				System.out.println(">Introduceți populația Țării:");
 				country.setPopulation(read.nextDouble());
