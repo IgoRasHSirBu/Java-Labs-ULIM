@@ -49,7 +49,7 @@ public class FisierTari {
 		}
 	}
 
-	public void afisareFisier() throws IOException {//TODO: for all file dew it
+	public void afisareFisier() throws IOException {// TODO: for all file dew it
 
 		if (fileIsAssigned) {
 			System.out.println("[----------------------------------------------------]");
@@ -60,25 +60,25 @@ public class FisierTari {
 			Country country;
 			try {
 				country = (Country) objInputStream.readObject();
-				
+
 				if (country instanceof Country) {
 					country.showDataOfCountry();
 				}
-				if (country instanceof EuropeanCountry) {
-					EuropeanCountry euc;
-					euc = (EuropeanCountry) country;
-					euc.showDataOfCountry();
-				}
-				if (country instanceof AsianCountry) {
-					AsianCountry euc;
-					euc = (AsianCountry) country;
-					euc.showDataOfCountry();
-				}
-				if (country instanceof EuropeanUnionCountry) {
-					EuropeanUnionCountry euc;
-					euc = (EuropeanUnionCountry) country;
-					euc.showDataOfCountry();
-				}
+//				if (country instanceof EuropeanCountry) {
+//					EuropeanCountry euc;
+//					euc = (EuropeanCountry) country;
+//					euc.showDataOfCountry();
+//				}
+//				if (country instanceof AsianCountry) {
+//					AsianCountry euc;
+//					euc = (AsianCountry) country;
+//					euc.showDataOfCountry();
+//				}
+//				if (country instanceof EuropeanUnionCountry) {
+//					EuropeanUnionCountry euc;
+//					euc = (EuropeanUnionCountry) country;
+//					euc.showDataOfCountry();
+//				}
 
 			} catch (ClassNotFoundException e) {
 				System.out.println("EROOR CLASS");
@@ -162,7 +162,7 @@ public class FisierTari {
 					read.nextLine();
 				}
 				if (country instanceof EuropeanUnionCountry) {
-					euUnionCountry = (EuropeanUnionCountry) country;
+					euUnionCountry = (EuropeanUnionCountry) country;// same addres
 
 					System.out.println(">Introduceți valuta Țării:");
 					euUnionCountry.setCurrency(read.nextLine());

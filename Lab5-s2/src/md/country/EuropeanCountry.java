@@ -9,6 +9,7 @@ public class EuropeanCountry extends Country {
 	public EuropeanCountry() {// exemple de constructori
 		area = 0.0;
 		currency = "Unknown";
+		super.setContinent(CONTINENT);
 	}
 
 	EuropeanCountry(String name, double population, String capital, String continent, String government, String leader,
