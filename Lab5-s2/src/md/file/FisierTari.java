@@ -59,26 +59,18 @@ public class FisierTari {
 
 			Country country;
 			try {
-				country = (Country) objInputStream.readObject();
 
-				if (country instanceof Country) {
-					country.showDataOfCountry();
+				boolean cont = true;
+
+				while (cont) {
+					country = (Country) objInputStream.readObject();
+					if (country != null) {
+						country.showDataOfCountry();
+					} else {
+						cont = false;
+					}
+
 				}
-//				if (country instanceof EuropeanCountry) {
-//					EuropeanCountry euc;
-//					euc = (EuropeanCountry) country;
-//					euc.showDataOfCountry();
-//				}
-//				if (country instanceof AsianCountry) {
-//					AsianCountry euc;
-//					euc = (AsianCountry) country;
-//					euc.showDataOfCountry();
-//				}
-//				if (country instanceof EuropeanUnionCountry) {
-//					EuropeanUnionCountry euc;
-//					euc = (EuropeanUnionCountry) country;
-//					euc.showDataOfCountry();
-//				}
 
 			} catch (ClassNotFoundException e) {
 				System.out.println("EROOR CLASS");
