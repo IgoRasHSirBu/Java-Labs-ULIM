@@ -1,6 +1,5 @@
 package md.file;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -50,7 +49,7 @@ public class FisierTari {
 		}
 	}
 
-	public void afisareFisier() throws IOException {// TODO: for all file dew it
+	public void afisareFisier() throws IOException {
 
 		if (fileIsAssigned) {
 			System.out.println("[----------------------------------------------------]");
@@ -107,11 +106,12 @@ public class FisierTari {
 
 			meniu.clrscr();
 			System.out.println("------------------ [Introducere date] ----------------");
-
 			System.out.println(">>Introduceți tipul Țării:");
 			System.out.println(
 					">\"EuropeanCountry\"\n>\"AsianCountry\"\n>\"EuropeanUnionCountry\"\n>\"Country\" (alt tip)");
-
+			System.out.println("------------------------------------------------------");
+			System.out.println(">Introduceți alegerea: ");
+			
 			String typeCountry = read.nextLine();
 
 			Country country = countryFactory.getCountry(typeCountry);

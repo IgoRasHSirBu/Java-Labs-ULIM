@@ -12,7 +12,7 @@ public class Country implements Serializable {
 	private String leader;
 
 	// Constructors
-	public Country() {// exemple de constructori
+	public Country() {
 		this.name = this.capital = this.continent = this.government = this.leader = "Unknown";
 	}
 
@@ -62,7 +62,7 @@ public class Country implements Serializable {
 	}
 
 	public Country(String name) {
-		this();// initializeaza campuriile
+		this();
 		if (name.length() > 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
 		} else {

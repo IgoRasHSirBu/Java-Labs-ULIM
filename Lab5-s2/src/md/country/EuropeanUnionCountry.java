@@ -4,7 +4,7 @@ public class EuropeanUnionCountry extends EuropeanCountry {
 
 	private int yearMember;
 
-	public EuropeanUnionCountry() {// exemple de constructori
+	public EuropeanUnionCountry() {
 		yearMember = 0;
 	}
 

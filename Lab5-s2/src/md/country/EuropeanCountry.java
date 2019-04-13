@@ -6,7 +6,7 @@ public class EuropeanCountry extends Country {
 	private String currency;
 	private final String CONTINENT = "Europa";
 
-	public EuropeanCountry() {// exemple de constructori
+	public EuropeanCountry() {
 		area = 0.0;
 		currency = "Unknown";
 		super.setContinent(CONTINENT);

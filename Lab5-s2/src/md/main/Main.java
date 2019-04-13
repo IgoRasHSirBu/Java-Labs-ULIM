@@ -63,12 +63,12 @@ public class Main {
 				tariFile.checkAssign();
 				meniu.opAddCountriesMenu();
 
-				if (tariFile.fileIsAssigned) {// remake
+				if (tariFile.fileIsAssigned) {
 					do {
 						oper = meniu.opAddCountryMenu();
 						switch (oper) {
 						case 1:
-							TODO: tariFile.addDateInFisier();
+							tariFile.addDateInFisier();
 							break;
 						case 2:
 							break;
