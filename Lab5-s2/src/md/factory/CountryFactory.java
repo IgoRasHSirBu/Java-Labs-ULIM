@@ -25,7 +25,7 @@ public class CountryFactory {
 				|| countryType.equalsIgnoreCase("Tara Uniunii Europene")
 				|| countryType.equalsIgnoreCase("ȚaraUniuniiEuropene")
 				|| countryType.equalsIgnoreCase("Țara Uniunii Europene")) {
-			return new EuropeanCountry();
+			return new EuropeanUnionCountry();
 		}
 		if (countryType.equalsIgnoreCase("Country") || countryType.equalsIgnoreCase("Tara")
 				|| countryType.equalsIgnoreCase("Țară")) {
