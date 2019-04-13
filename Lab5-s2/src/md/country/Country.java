@@ -143,10 +143,6 @@ public class Country implements Serializable {
 	public String getLeader() {
 		return this.leader;
 	}
-	
-	public void setAllData() {
-		
-	}
 
 	// afiseaza toate datele
 	public void showDataOfCountry() {

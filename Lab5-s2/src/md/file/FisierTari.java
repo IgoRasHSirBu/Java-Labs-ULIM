@@ -125,8 +125,10 @@ public class FisierTari {
 				System.out.println(">Introduceți capitala Țării:");
 				country.setCapital(read.nextLine());
 
-				System.out.println(">Introduceți continentul Țării:");
-				country.setContinent(read.nextLine());
+				if (country.getClass() == Country.class) {
+					System.out.println(">Introduceți continentul Țării:");
+					country.setContinent(read.nextLine());
+				}
 
 				System.out.println(">Introduceți populația Țării:");
 				country.setPopulation(read.nextDouble());
@@ -138,7 +140,8 @@ public class FisierTari {
 				System.out.println(">Introduceți guvernul Țării:");
 				country.setGovernment(read.nextLine());
 
-				if (country instanceof EuropeanCountry) {
+				if (country.getClass() == EuropeanCountry.class) {
+
 					europeanCountry = (EuropeanCountry) country;
 
 					System.out.println(">Introduceți valuta Țării:");
@@ -149,7 +152,7 @@ public class FisierTari {
 					read.nextLine();
 
 				}
-				if (country instanceof AsianCountry) {
+				if (country.getClass() == AsianCountry.class) {
 					asianCountry = (AsianCountry) country;
 
 					System.out.println(">Introduceți valuta Țării:");
@@ -159,7 +162,7 @@ public class FisierTari {
 					asianCountry.setArea(read.nextDouble());
 					read.nextLine();
 				}
-				if (country instanceof EuropeanUnionCountry) {
+				if (country.getClass() == EuropeanUnionCountry.class) {
 					euUnionCountry = (EuropeanUnionCountry) country;// same addres
 
 					System.out.println(">Introduceți valuta Țării:");
