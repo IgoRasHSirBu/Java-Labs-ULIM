@@ -1,5 +1,6 @@
 package md.file;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -72,8 +73,8 @@ public class FisierTari {
 
 				}
 
-			} catch (ClassNotFoundException e) {
-				System.out.println("EROOR CLASS");
+			} catch (ClassNotFoundException | java.io.EOFException end) {
+				end.fillInStackTrace();
 			}
 
 			objInputStream.close();
@@ -91,8 +92,13 @@ public class FisierTari {
 
 			dateInFile = new File(assignedFile.getName());
 
-			FileOutputStream fileOutStream = new FileOutputStream(dateInFile, true);
-			ObjectOutputStream objOutStream = new ObjectOutputStream(fileOutStream);
+			ObjectOutputStream objOutStream;
+
+			if (dateInFile.length() == 0L) {
+				objOutStream = new ObjectOutputStream(new FileOutputStream(dateInFile));
+			} else {
+				objOutStream = new AppendableObjectOutputStream(new FileOutputStream(dateInFile, true));
+			}
 
 			CountryFactory countryFactory = new CountryFactory();
 			EuropeanCountry europeanCountry;
