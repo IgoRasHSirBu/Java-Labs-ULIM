@@ -98,12 +98,7 @@ public class Main {
 					break;
 				case 2:// afisarea tari din asia
 					meniu.clrscr();
-					TODO: tariFile.afisareTariDinContinentul("Asia");
-					meniu.pauseMenu();
-					break;
-				case 3:// algoritmul V3 care verifica indeferent de low/up case sau de keybord
-					meniu.clrscr();
-//		TODO : 			tariFile.prelucrareDateDinFisierV3();
+					tariFile.afisareTariDinContinentul("Asia");
 					meniu.pauseMenu();
 					break;
 				case 9:

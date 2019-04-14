@@ -81,7 +81,6 @@ public class Menu {
 		System.out.println("[========== Prelucrarea datelor din fișier ==========]");
 		System.out.println("Introduceți 1 Pentru a afișa țările din Europa");
 		System.out.println("Introduceți 2 Pentru a afișa țările din Asia");
-		System.out.println("Introduceți 3 Pentru a afișa țările din Europa V3");
 		System.out.println("Introduceți 9 Pentru a reveni in meniul principal");
 		System.out.println("Introduceți 0 Pentru a ieși din program");
 		System.out.println("------------------------------------------------------");
