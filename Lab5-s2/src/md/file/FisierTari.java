@@ -216,53 +216,6 @@ public class FisierTari {
 		}
 	}
 
-//      void prelucrareDateDinFisierV2() throws IOException {
-//
-//          if (fileIsAssigned) {
-//              FileReader fileReader = new FileReader(fileDeTari);
-//              BufferedReader fileReaderBuffer = new BufferedReader(fileReader);
-//              String line;
-//
-//              System.out.println("[============== Afișarea rezultatului ===============]");
-//              while ((line = fileReaderBuffer.readLine()) != null) {
-//                  for (int i = 0; i < line.length() - 8; i++) {
-//                      if ((line.charAt(i) == 'C') && (line.charAt(i + 1) == 'h') && (line.charAt(i + 2) == 'i')
-//                              && (line.charAt(i + 3) == 'ș') && (line.charAt(i + 4) == 'i') && (line.charAt(i + 5) == 'n')
-//                              && (line.charAt(i + 6) == 'ă') && (line.charAt(i + 7) == 'u')) {
-//                          System.out.println(line);
-//                      }
-//                  }
-//              }
-//
-//          } else {
-//              meniu.errorOP(3);
-//          }
-//      }
-//
-//      void prelucrareDateDinFisierV3() throws IOException {
-//
-//          if (fileIsAssigned) {
-//              FileReader fileReader = new FileReader(fileDeTari);
-//              BufferedReader fileReaderBuffer = new BufferedReader(fileReader);
-//              String line;
-//
-//              System.out.println("[============== Afișarea rezultatului ===============]");
-//              while ((line = fileReaderBuffer.readLine()) != null) {
-//                  String linelower = line.toLowerCase();
-//                  for (int i = 0; i < linelower.length() - 8; i++) {
-//                      if ((linelower.charAt(i) == 'c') && (linelower.charAt(i + 1) == 'h') && (linelower.charAt(i + 2) == 'i')
-//                              && (linelower.charAt(i + 3) == 'ș') || (linelower.charAt(i + 3) == 's') && (linelower.charAt(i + 4) == 'i')
-//                              && (linelower.charAt(i + 5) == 'n')
-//                              && (linelower.charAt(i + 6) == 'ă') || (linelower.charAt(i + 6) == 'a') && (linelower.charAt(i + 7) == 'u')) {
-//                          System.out.println(line);
-//                      }
-//                  }
-//              }
-//          } else {
-//              meniu.errorOP(3);
-//          }
-//      }
-
 	public void eliminareFisier() {
 
 		if (fileIsAssigned) {
