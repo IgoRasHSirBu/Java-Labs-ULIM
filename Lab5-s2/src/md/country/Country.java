@@ -21,10 +21,10 @@ public class Country implements Serializable {
 	}
 
 	public Country(String name, double population, String capital, String continent, String government, String leader) {
-		if (name.length() > 3) {
+		if (name.length() >= 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
 		} else {
-			this.name = name;
+			this.name = "Unknown";
 		}
 		if (population > 0) {
 			this.population = population;

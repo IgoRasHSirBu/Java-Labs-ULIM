@@ -14,8 +14,10 @@ import md.country.EuropeanCountry;
 import md.country.EuropeanUnionCountry;
 import md.factory.CountryFactory;
 import md.main.Menu;
+
 /**
  * Operates with File and Country objects
+ * 
  * @author Fanncy
  *
  */
@@ -283,11 +285,11 @@ public class FisierTari {
 			boolean exitsCountry = false;
 			try {
 				// Edits the name of country ex: Moldova -> Mol
-				if (countryNameToDelete.length() > 3) {
+				if (countryNameToDelete.length() >= 3) {
 					countryNameToDelete = countryNameToDelete.substring(0, 1).toUpperCase()
 							+ countryNameToDelete.substring(1, 3);
 				} else {
-					countryNameToDelete = countryNameToDelete.substring(0, 1).toUpperCase();
+					countryNameToDelete = "Unknown";
 				}
 				// Displays country which will be deleted
 				System.out.println(countryNameToDelete);
@@ -380,6 +382,7 @@ public class FisierTari {
 
 	/**
 	 * Assigns new file or create new if assigned file dosen't exists
+	 * 
 	 * @param str - path/name of the file(when create new file)
 	 * @throws IOException
 	 */
@@ -413,6 +416,7 @@ public class FisierTari {
 			}
 		}
 	}
+
 	/**
 	 * Displays whether the file is assigned
 	 */
