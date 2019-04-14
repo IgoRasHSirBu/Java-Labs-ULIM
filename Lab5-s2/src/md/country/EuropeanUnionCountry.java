@@ -1,5 +1,9 @@
 package md.country;
-
+/**
+ * Used for storing data for a European Union country object
+ * @author Fanncy
+ *
+ */
 public class EuropeanUnionCountry extends EuropeanCountry {
 
 	private int yearMember;

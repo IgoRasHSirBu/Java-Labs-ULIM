@@ -14,17 +14,27 @@ import md.country.EuropeanCountry;
 import md.country.EuropeanUnionCountry;
 import md.factory.CountryFactory;
 import md.main.Menu;
-
+/**
+ * Operates with File and Country objects
+ * @author Fanncy
+ *
+ */
 public class FisierTari {
 
 	File fileDeTari;
 	File assignedFile;
 	public boolean fileIsAssigned = false;
 	Scanner read = new Scanner(System.in);
-	String fileName = "countries";// default
+	String fileName = "countries";// default path
 	Menu meniu = new Menu();
 
-	public void creareFisier(String str) throws IOException {// creare file
+	/**
+	 * Creates a new file and assigns it
+	 * 
+	 * @param str path/name of the file
+	 * @throws IOException
+	 */
+	public void creareFisier(String str) throws IOException {
 
 		fileDeTari = new File(str);
 		fileDeTari.createNewFile();// throws IOException
@@ -49,11 +59,16 @@ public class FisierTari {
 		}
 	}
 
+	/**
+	 * Displays all data from file
+	 * 
+	 * @throws IOException
+	 */
 	public void afisareFisier() throws IOException {
 
 		if (fileIsAssigned) {
 			System.out.println("[----------------------------------------------------]");
-
+			// check if file is empty or not
 			if (fileDeTari.length() != 0L) {
 				FileInputStream fileInputStream = new FileInputStream(fileDeTari);
 				ObjectInputStream objInputStream = new ObjectInputStream(fileInputStream);
@@ -72,7 +87,6 @@ public class FisierTari {
 				} finally {
 					objInputStream.close();
 				}
-
 			}
 			meniu.pauseMenu();
 
@@ -82,6 +96,11 @@ public class FisierTari {
 		}
 	}
 
+	/**
+	 * Adds new country object to file
+	 * 
+	 * @throws IOException
+	 */
 	public void addDateInFisier() throws IOException {
 
 		File dateInFile;
@@ -89,14 +108,14 @@ public class FisierTari {
 			dateInFile = new File(assignedFile.getName());
 
 			ObjectOutputStream objOutStream;
-
+			// check if file is empty or not, if append is required for new objects
 			if (dateInFile.length() == 0L) {
 				objOutStream = new ObjectOutputStream(new FileOutputStream(dateInFile));
 			} else {
 				objOutStream = new AppendableObjectOutputStream(new FileOutputStream(dateInFile, true));
 			}
 
-			CountryFactory countryFactory = new CountryFactory();
+			CountryFactory countryFactory = new CountryFactory();// pattern for country objects
 			EuropeanCountry europeanCountry;
 			AsianCountry asianCountry;
 			EuropeanUnionCountry euUnionCountry;
@@ -111,8 +130,9 @@ public class FisierTari {
 
 			String typeCountry = read.nextLine();
 
-			Country country = countryFactory.getCountry(typeCountry);
+			Country country = countryFactory.getCountry(typeCountry);// get new country object
 
+			// Entering data for new country
 			if (country != null) {
 				System.out.println(">Introduceți numele Țării:");
 				country.setName(read.nextLine());
@@ -120,7 +140,7 @@ public class FisierTari {
 				System.out.println(">Introduceți capitala Țării:");
 				country.setCapital(read.nextLine());
 
-				if (country.getClass() == Country.class) {
+				if (country.getClass() == Country.class) {// check for additional members
 					System.out.println(">Introduceți continentul Țării:");
 					country.setContinent(read.nextLine());
 				}
@@ -135,7 +155,7 @@ public class FisierTari {
 				System.out.println(">Introduceți guvernul Țării:");
 				country.setGovernment(read.nextLine());
 
-				if (country.getClass() == EuropeanCountry.class) {
+				if (country.getClass() == EuropeanCountry.class) {// check for additional members
 
 					europeanCountry = (EuropeanCountry) country;
 
@@ -147,7 +167,7 @@ public class FisierTari {
 					read.nextLine();
 
 				}
-				if (country.getClass() == AsianCountry.class) {
+				if (country.getClass() == AsianCountry.class) {// check for additional members
 					asianCountry = (AsianCountry) country;
 
 					System.out.println(">Introduceți valuta Țării:");
@@ -157,8 +177,8 @@ public class FisierTari {
 					asianCountry.setArea(read.nextDouble());
 					read.nextLine();
 				}
-				if (country.getClass() == EuropeanUnionCountry.class) {
-					euUnionCountry = (EuropeanUnionCountry) country;// same addres
+				if (country.getClass() == EuropeanUnionCountry.class) {// check for additional members
+					euUnionCountry = (EuropeanUnionCountry) country;// same address
 
 					System.out.println(">Introduceți valuta Țării:");
 					euUnionCountry.setCurrency(read.nextLine());
@@ -190,9 +210,14 @@ public class FisierTari {
 		}
 	}
 
+	/**
+	 * Display all countries witch specified continent
+	 * 
+	 * @param continent of country to display
+	 * @throws IOException
+	 */
 	public void afisareTariDinContinentul(String continent) throws IOException {
 		if (fileIsAssigned) {
-
 			ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(fileDeTari));
 			Country country;
 			try {
@@ -218,6 +243,9 @@ public class FisierTari {
 		}
 	}
 
+	/**
+	 * Deletes current file
+	 */
 	public void eliminareFisier() {
 
 		if (fileIsAssigned) {
@@ -232,6 +260,11 @@ public class FisierTari {
 		}
 	}
 
+	/**
+	 * Deletes specified country
+	 * 
+	 * @throws IOException
+	 */
 	public void eliminareTara() throws IOException {
 
 		if (fileIsAssigned) {
@@ -245,19 +278,18 @@ public class FisierTari {
 
 			File tempFile = new File("temp");
 			ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(fileDeTari));
-//			ObjectOutputStream objOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile));
 
 			Country country;
 			boolean exitsCountry = false;
 			try {
-				// editam numele dupa conditie
+				// Edits the name of country ex: Moldova -> Mol
 				if (countryNameToDelete.length() > 3) {
 					countryNameToDelete = countryNameToDelete.substring(0, 1).toUpperCase()
 							+ countryNameToDelete.substring(1, 3);
 				} else {
 					countryNameToDelete = countryNameToDelete.substring(0, 1).toUpperCase();
 				}
-				// afisarea tarei care va fi strearsa din file
+				// Displays country which will be deleted
 				System.out.println(countryNameToDelete);
 				while (true) {
 					country = (Country) objInputStream.readObject();
@@ -284,9 +316,8 @@ public class FisierTari {
 				ObjectInputStream objInputStreamCopy = new ObjectInputStream(new FileInputStream(fileDeTari));
 				boolean exitsHeader = false;
 
-				// citirea obiectelor fara obj cu numele == countryNameToDelete in temp file
+				// Copy all object to temp file without == countryNameToDelete
 				try {
-
 					while (true) {
 						country = (Country) objInputStreamCopy.readObject();
 						if (country != null) {
@@ -303,14 +334,13 @@ public class FisierTari {
 					}
 
 				} catch (ClassNotFoundException | java.io.EOFException end) {
-
 				} finally {
 					objOutStreamAppend.close();
 					objInputStreamCopy.close();
 					exitsHeader = false;
 				}
 
-//				// copierea din temp in file original si stergerea temp
+				// Copy all obj from temp file in current file
 				objInputStreamCopy = new ObjectInputStream(new FileInputStream(tempFile));
 				objOutputStreamHeader = new ObjectOutputStream(new FileOutputStream(fileDeTari));
 				objOutStreamAppend = new AppendableObjectOutputStream(new FileOutputStream(fileDeTari, true));
@@ -328,24 +358,19 @@ public class FisierTari {
 							}
 						}
 					}
-
 				} catch (ClassNotFoundException | java.io.EOFException end) {
-
 				} catch (Exception ex) {
-//hmmm sterge toate inafara de una :h mm
 				} finally {
 					objOutStreamAppend.close();
 					objInputStreamCopy.close();
 					tempFile.delete();
 				}
-
 				System.out.println("------------------------------------------------------");
 				System.out.println(">Țara a fost ștersă!");
 			} else {
 				System.out.println("------------------------------------------------------");
 				System.out.println(">Țara nu a fost ștersă sau nu există!");
 			}
-
 			meniu.pauseMenu();
 		} else {
 			meniu.errorOP(5);
@@ -353,6 +378,11 @@ public class FisierTari {
 		}
 	}
 
+	/**
+	 * Assigns new file or create new if assigned file dosen't exists
+	 * @param str - path/name of the file(when create new file)
+	 * @throws IOException
+	 */
 	public void assignFile(String str) throws IOException {
 
 		fileDeTari = new File(str);
@@ -383,7 +413,9 @@ public class FisierTari {
 			}
 		}
 	}
-
+	/**
+	 * Displays whether the file is assigned
+	 */
 	public void checkAssign() {
 
 		if (fileIsAssigned) {

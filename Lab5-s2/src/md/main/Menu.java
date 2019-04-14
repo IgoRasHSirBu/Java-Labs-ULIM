@@ -2,6 +2,11 @@ package md.main;
 
 import java.util.Scanner;
 
+/**
+ * Used for making menu
+ * @author Fanncy
+ *
+ */
 public class Menu {
 
 	private Scanner read = new Scanner(System.in);
@@ -17,9 +22,8 @@ public class Menu {
 		System.out.println("Introduceți 6 pentru eliminarea datelor");
 		System.out.println("Introduceți 0 Pentru ieșirea din program");
 		System.out.println("------------------------------------------------------");
-		System.out.println(">Introduceți operația: "); // citirea operației dorite de către user
+		System.out.println(">Introduceți operația: ");
 
-//		return read.nextInt();
 		return Integer.parseInt(read.nextLine());
 	}
 
@@ -33,7 +37,6 @@ public class Menu {
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
 
-//		return read.nextInt();
 		return Integer.parseInt(read.nextLine());
 	}
 
@@ -62,7 +65,6 @@ public class Menu {
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
 
-//		return read.nextInt();
 		return Integer.parseInt(read.nextLine());
 	}
 
@@ -75,8 +77,7 @@ public class Menu {
 		System.out.println("Introduceți 0 Pentru a ieși din program");
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
-		
-//		return read.nextInt();
+
 		return Integer.parseInt(read.nextLine());
 	}
 
@@ -90,7 +91,6 @@ public class Menu {
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
 
-//		return read.nextInt();
 		return Integer.parseInt(read.nextLine());
 	}
 
@@ -124,7 +124,7 @@ public class Menu {
 		read.nextLine();
 	}
 
-	public void errorOP(int id) {// afisarea starii de erori
+	public void errorOP(int id) {
 
 		switch (id) {
 		case 1:
@@ -154,7 +154,6 @@ public class Menu {
 	}
 
 	public void clrscr() {
-
 		for (int i = 0; i < 30; i++) {
 			System.out.println();
 		}

@@ -1,7 +1,11 @@
 package md.country;
 
 import java.io.Serializable;
-
+/**
+ * Used for storing data for a specific country object
+ * @author Fanncy
+ *
+ */
 public class Country implements Serializable {
 
 	private String name;

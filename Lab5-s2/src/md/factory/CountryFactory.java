@@ -2,8 +2,19 @@ package md.factory;
 
 import md.country.*;
 
+/**
+ * Used for creating specific objects
+ * 
+ * @author Fanncy
+ *
+ */
 public class CountryFactory {
 
+	/**
+	 * 
+	 * @param countryType- specifies the object type
+	 * @return specified object type
+	 */
 	public Country getCountry(String countryType) {
 
 		if (countryType == null) {

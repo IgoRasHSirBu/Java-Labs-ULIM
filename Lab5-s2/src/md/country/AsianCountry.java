@@ -1,5 +1,9 @@
 package md.country;
-
+/**
+ * Used for storing data for a Asian country object
+ * @author Fanncy
+ *
+ */
 public class AsianCountry extends Country {
 
 	private double area;

@@ -4,15 +4,23 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
-//pentru a putea face append fara a scrie un nou header in file
-public class AppendableObjectOutputStream extends ObjectOutputStream{
-
+/**
+ * Used for appending data to a file
+ * 
+ * @author Fanncy
+ *
+ */
+public class AppendableObjectOutputStream extends ObjectOutputStream {
+	// constructor
 	protected AppendableObjectOutputStream(OutputStream out) throws IOException, SecurityException {
 		super(out);
 	}
 
-	 @Override
-	  protected void writeStreamHeader() throws IOException {
-	    reset();
-	  }
+	/**
+	 * New version of this method will not create new header to the file
+	 */
+	@Override
+	protected void writeStreamHeader() throws IOException {
+		reset();
+	}
 }

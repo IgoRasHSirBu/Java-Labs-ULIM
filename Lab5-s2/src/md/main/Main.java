@@ -3,30 +3,34 @@ package md.main;
 import md.file.FisierTari;
 import java.io.IOException;
 import java.util.Scanner;
-
+/**
+ * 
+ * @author Fanncy
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 
 		Scanner read = new Scanner(System.in);
-		int oper;
-		Menu meniu = new Menu();
+		int oper;// oper for menu loop
+		Menu meniu = new Menu();// menu obj
 		String nameFile;
 		FisierTari tariFile = new FisierTari();
-
+		// menu loop
 		do {
 			meniu.clrscr();
 			tariFile.checkAssign();
 			oper = meniu.mainMenu();
-			switch (oper) {
+			switch (oper) {// main menu
 
-			case 1:
+			case 1:// create new file
 				meniu.clrscr();
 				tariFile.checkAssign();
 				oper = meniu.opCreareFileMenu();
 
 				switch (oper) {
-				case 1:
+				case 1:// for own path
 					meniu.clrscr();
 					tariFile.checkAssign();
 					meniu.opCreareFileMenuF1();
@@ -34,7 +38,7 @@ public class Main {
 					read.nextLine();
 					tariFile.creareFisier(nameFile);
 					break;
-				case 2:
+				case 2:// for default path
 					meniu.clrscr();
 					tariFile.checkAssign();
 					meniu.opCreareFileMenuF2();
@@ -52,13 +56,13 @@ public class Main {
 					break;
 				}
 				break;
-			case 2:
+			case 2:// display all data from file
 				meniu.clrscr();
 				tariFile.checkAssign();
 				meniu.opAfisareMeniu();
 				tariFile.afisareFisier();
 				break;
-			case 3:// op adaugare tara
+			case 3:// for adding a new country in file
 				meniu.clrscr();
 				tariFile.checkAssign();
 				meniu.opAddCountriesMenu();
@@ -86,17 +90,17 @@ public class Main {
 					meniu.pauseMenu();
 				}
 				break;
-			case 4:
+			case 4:// display specific data from file
 				meniu.clrscr();
 				tariFile.checkAssign();
 				oper = meniu.opPrelucrareDate();
 				switch (oper) {
-				case 1:// afisarea tari din europa
+				case 1:// display "Europa" countries from file
 					meniu.clrscr();
 					tariFile.afisareTariDinContinentul("Europa");
 					meniu.pauseMenu();
 					break;
-				case 2:// afisarea tari din asia
+				case 2:// display "Asia" countries from file
 					meniu.clrscr();
 					tariFile.afisareTariDinContinentul("Asia");
 					meniu.pauseMenu();
@@ -113,25 +117,24 @@ public class Main {
 					break;
 				}
 				break;
-			case 5:
+			case 5:// assign a new file or create a new one
 				meniu.clrscr();
 				tariFile.checkAssign();
 				nameFile = meniu.opAsociereFileMeniu();
 				tariFile.assignFile(nameFile);
 				break;
-			case 6:
-
+			case 6:// deleting data from file
 				meniu.clrscr();
 				tariFile.checkAssign();
 				oper = meniu.opElimenareDateMenu();
 
 				switch (oper) {
-				case 1:
+				case 1:// delete whole file
 					meniu.clrscr();
 					meniu.opStergereFisier();
 					tariFile.eliminareFisier();
 					break;
-				case 2:
+				case 2:// delete specific country from file
 					meniu.clrscr();
 					meniu.opEliminareCountryMeniu();
 					tariFile.eliminareTara();
@@ -146,7 +149,6 @@ public class Main {
 						meniu.clrscr();
 					}
 				}
-
 				break;
 			default:
 				if (oper != 0) {
