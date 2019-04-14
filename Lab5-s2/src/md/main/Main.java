@@ -93,7 +93,7 @@ public class Main {
 				switch (oper) {
 				case 1:// folosind contains
 					meniu.clrscr();
-//		TODO : 					tariFile.prelucrareDateDinFisierV1();
+		TODO : 					tariFile.afisareTariDinContinentul("Europa");
 					meniu.pauseMenu();
 					break;
 				case 2:// folosind charAt in algoritmul propriu

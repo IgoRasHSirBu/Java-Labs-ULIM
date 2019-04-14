@@ -59,24 +59,19 @@ public class FisierTari {
 
 			Country country;
 			try {
-
-				boolean cont = true;
-
-				while (cont) {
+				while (true) {
 					country = (Country) objInputStream.readObject();
 					if (country != null) {
+						System.out.println("------------------------------------------------------");
 						country.showDataOfCountry();
-					} else {
-						cont = false;
 					}
-
 				}
-
 			} catch (ClassNotFoundException | java.io.EOFException end) {
-				end.fillInStackTrace();
+				System.out.println("------------------------------------------------------");
+			} finally {
+				objInputStream.close();
 			}
 
-			objInputStream.close();
 			meniu.pauseMenu();
 		} else {
 			meniu.errorOP(5);
@@ -111,7 +106,7 @@ public class FisierTari {
 					">\"EuropeanCountry\"\n>\"AsianCountry\"\n>\"EuropeanUnionCountry\"\n>\"Country\" (alt tip)");
 			System.out.println("------------------------------------------------------");
 			System.out.println(">Introduceți alegerea: ");
-			
+
 			String typeCountry = read.nextLine();
 
 			Country country = countryFactory.getCountry(typeCountry);
@@ -193,25 +188,34 @@ public class FisierTari {
 		}
 	}
 
-//      void prelucrareDateDinFisierV1() throws IOException {//afisarea studentilor din chisinau V1(cu folosirea metodei contains
-//
-//
-//          if (fileIsAssigned) {
-//              FileReader fileReader = new FileReader(fileDeTari);
-//              BufferedReader fileReaderBuffer = new BufferedReader(fileReader);
-//              String line;
-//
-//              System.out.println("[============== Afișarea rezultatului ===============]");
-//              while ((line = fileReaderBuffer.readLine()) != null) {
-//                  if (line.contains("Chișinău")) {
-//                      System.out.println(line);
-//                  }
-//              }
-//          } else {
-//              meniu.errorOP(3);
-//          }
-//      }
-//
+	public void afisareTariDinContinentul(String continent) throws IOException {
+		if (fileIsAssigned) {
+
+			ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(fileDeTari));
+			Country country;
+			try {
+				System.out.println("[============== Afișarea rezultatului ===============]");
+				System.out.println("[----------------------------------------------------]");
+				while (true) {
+					country = (Country) objInputStream.readObject();
+					if (country != null) {
+						if (country.getContinent().equalsIgnoreCase(continent)) {
+							System.out.println("------------------------------------------------------");
+							country.showDataOfCountry();
+						}
+					}
+				}
+			} catch (ClassNotFoundException | java.io.EOFException end) {
+				System.out.println("------------------------------------------------------");
+			} finally {
+				objInputStream.close();
+			}
+
+		} else {
+			meniu.errorOP(3);
+		}
+	}
+
 //      void prelucrareDateDinFisierV2() throws IOException {
 //
 //          if (fileIsAssigned) {
