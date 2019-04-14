@@ -283,14 +283,18 @@ public class FisierTari {
 
 				// citirea obiectelor fara obj cu numele == countryNameToDelete in temp file
 				try {
-					country = (Country) objInputStreamCopy.readObject();
-					if (country != null) {
-						if (!(country.getName().equalsIgnoreCase(countryNameToDelete))) {
-							if (exitsHeader) {
-								objOutStreamAppend.writeObject(country);
-							} else {
-								objOutputStreamHeader.writeObject(country);
-								objOutputStreamHeader.close();
+
+					while (true) {
+						country = (Country) objInputStreamCopy.readObject();
+						if (country != null) {
+							if (!(country.getName().equalsIgnoreCase(countryNameToDelete))) {
+								if (exitsHeader) {
+									objOutStreamAppend.writeObject(country);
+								} else {
+									objOutputStreamHeader.writeObject(country);
+									objOutputStreamHeader.close();
+									exitsHeader = true;
+								}
 							}
 						}
 					}
@@ -300,21 +304,25 @@ public class FisierTari {
 				} finally {
 					objOutStreamAppend.close();
 					objInputStreamCopy.close();
+					exitsHeader = false;
 				}
 
-				// copierea din temp in file original si stergerea temp
+//				// copierea din temp in file original si stergerea temp
 				objInputStreamCopy = new ObjectInputStream(new FileInputStream(tempFile));
 				objOutputStreamHeader = new ObjectOutputStream(new FileOutputStream(fileDeTari));
 				objOutStreamAppend = new AppendableObjectOutputStream(new FileOutputStream(fileDeTari, true));
 
 				try {
-					country = (Country) objInputStreamCopy.readObject();
-					if (country != null) {
-						if (exitsHeader) {
-							objOutStreamAppend.writeObject(country);
-						} else {
-							objOutputStreamHeader.writeObject(country);
-							objOutputStreamHeader.close();
+					while (true) {
+						country = (Country) objInputStreamCopy.readObject();
+						if (country != null) {
+							if (exitsHeader) {
+								objOutStreamAppend.writeObject(country);
+							} else {
+								objOutputStreamHeader.writeObject(country);
+								objOutputStreamHeader.close();
+								exitsHeader = true;
+							}
 						}
 					}
 
@@ -323,7 +331,7 @@ public class FisierTari {
 				} finally {
 					objOutStreamAppend.close();
 					objInputStreamCopy.close();
-				//	tempFile.delete();
+					tempFile.delete();
 				}
 
 				System.out.println("------------------------------------------------------");
