@@ -107,7 +107,7 @@ public class FisierTari {
 
 		File dateInFile;
 		if (fileIsAssigned) {
-			dateInFile = new File(assignedFile.getName());
+			dateInFile = new File(fileDeTari.getName());
 
 			ObjectOutputStream objOutStream;
 			// check if file is empty or not, if append is required for new objects
@@ -252,6 +252,7 @@ public class FisierTari {
 
 		if (fileIsAssigned) {
 			fileDeTari.delete();
+			System.out.println(fileDeTari.getAbsolutePath());
 			fileIsAssigned = false;
 			System.out.println("------------------------------------------------------");
 			System.out.println(">Fișierul asociat a fost șters!");
@@ -381,7 +382,7 @@ public class FisierTari {
 	}
 
 	/**
-	 * Assigns new file or create new if assigned file dosen't exists
+	 * Assigns new file or create new file if the assigned file dosen't exists
 	 * 
 	 * @param str - path/name of the file(when create new file)
 	 * @throws IOException
@@ -395,7 +396,6 @@ public class FisierTari {
 			System.out.println("------------------------------------------------------");
 			System.out.println(">Fișierul cu numele \"" + str + "\" a fost asociat!");
 
-			assignedFile = new File(fileDeTari.getName());
 			fileIsAssigned = true;
 
 			meniu.pauseMenu();
@@ -406,7 +406,6 @@ public class FisierTari {
 				System.out.println(">Fișierul \"" + fileName + "\" nu exista\n >Fișierul cu numele \"" + fileName
 						+ "\" a fost creat și asociat!");
 
-				assignedFile = new File(fileDeTari.getName());
 				fileIsAssigned = true;
 
 				meniu.pauseMenu();
@@ -424,7 +423,7 @@ public class FisierTari {
 
 		if (fileIsAssigned) {
 			System.out.println("[-----------------------------------------------------");
-			System.out.println(">[Este asociat fisierul: \"" + assignedFile.getName() + "\"]");
+			System.out.println(">[Este asociat fisierul: \"" + fileDeTari.getName() + "\"]");
 			System.out.println("-----------------------------------------------------]");
 		}
 	}

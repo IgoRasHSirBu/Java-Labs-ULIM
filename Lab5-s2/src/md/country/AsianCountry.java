@@ -6,6 +6,7 @@ package md.country;
  */
 public class AsianCountry extends Country {
 
+	private static final long serialVersionUID = 1L;
 	private double area;
 	private String currency;
 	private final String CONTINENT = "Asia";

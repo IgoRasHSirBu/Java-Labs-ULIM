@@ -6,6 +6,7 @@ package md.country;
  */
 public class EuropeanUnionCountry extends EuropeanCountry {
 
+	private static final long serialVersionUID = 1L;
 	private int yearMember;
 
 	public EuropeanUnionCountry() {

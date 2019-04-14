@@ -159,5 +159,6 @@ public class Main {
 				break;
 			}
 		} while (oper != 0);
+		read.close();
 	}
 }
