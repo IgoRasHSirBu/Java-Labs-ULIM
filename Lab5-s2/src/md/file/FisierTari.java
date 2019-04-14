@@ -83,7 +83,6 @@ public class FisierTari {
 
 		File dateInFile;
 		if (fileIsAssigned) {
-
 			dateInFile = new File(assignedFile.getName());
 
 			ObjectOutputStream objOutStream;
@@ -238,6 +237,7 @@ public class FisierTari {
 			System.out.println("------------------------------------------------------");
 			System.out.println("Introduceți numele țării pentru ștergere ");
 			String countryNameToDelete = read.next();
+			read.nextLine();
 			System.out.println("<--------------------Căutare Țară-------------------->");
 
 			File tempFile = new File("temp");
@@ -328,6 +328,8 @@ public class FisierTari {
 
 				} catch (ClassNotFoundException | java.io.EOFException end) {
 
+				} catch (Exception ex) {
+//hmmm sterge toate inafara de una :h mm
 				} finally {
 					objOutStreamAppend.close();
 					objInputStreamCopy.close();

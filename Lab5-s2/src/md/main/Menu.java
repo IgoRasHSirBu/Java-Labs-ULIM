@@ -19,7 +19,8 @@ public class Menu {
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: "); // citirea operației dorite de către user
 
-		return read.nextInt();
+//		return read.nextInt();
+		return Integer.parseInt(read.nextLine());
 	}
 
 	int opCreareFileMenu() {
@@ -32,7 +33,8 @@ public class Menu {
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
 
-		return read.nextInt();
+//		return read.nextInt();
+		return Integer.parseInt(read.nextLine());
 	}
 
 	void opCreareFileMenuF1() {
@@ -60,7 +62,8 @@ public class Menu {
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
 
-		return read.nextInt();
+//		return read.nextInt();
+		return Integer.parseInt(read.nextLine());
 	}
 
 	int opElimenareDateMenu() {
@@ -72,8 +75,9 @@ public class Menu {
 		System.out.println("Introduceți 0 Pentru a ieși din program");
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
-		return read.nextInt();
-
+		
+//		return read.nextInt();
+		return Integer.parseInt(read.nextLine());
 	}
 
 	int opPrelucrareDate() {
@@ -86,7 +90,8 @@ public class Menu {
 		System.out.println("------------------------------------------------------");
 		System.out.println(">Introduceți operația: ");
 
-		return read.nextInt();
+//		return read.nextInt();
+		return Integer.parseInt(read.nextLine());
 	}
 
 	String opAsociereFileMeniu() {
@@ -94,7 +99,7 @@ public class Menu {
 		System.out.println("[=============== Asociera unui fisier ===============]");
 		System.out.println(">Introduceți numele fișierului");
 
-		return read.next();
+		return read.nextLine();
 	}
 
 	void opAfisareMeniu() {
@@ -116,7 +121,7 @@ public class Menu {
 		System.out.println("[----------------------------------------------------]");
 		System.out.println(">Introduceți 9 Pentru a continua!");
 
-		read.next();
+		read.nextLine();
 	}
 
 	public void errorOP(int id) {// afisarea starii de erori

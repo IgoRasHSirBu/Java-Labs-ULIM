@@ -134,7 +134,7 @@ public class Main {
 				case 2:
 					meniu.clrscr();
 					meniu.opEliminareCountryMeniu();
-		TODO : 		tariFile.eliminareTara();
+					tariFile.eliminareTara();
 					break;
 				case 9:
 					meniu.clrscr();
