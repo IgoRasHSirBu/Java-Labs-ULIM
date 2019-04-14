@@ -230,82 +230,115 @@ public class FisierTari {
 		}
 	}
 
-//	void eliminareStudent() throws IOException {
-//
-//		if (fileIsAssigned) {
-//
-//			this.afisareFisier();
-//			System.out.println("------------------------------------------------------");
-//			System.out.println("Introduceți numărul studentului pentru ștergere ");
-//			String ord = read.next();
-//			String ords = "";
-//
-//			File tempFile = new File("temp");
-//			BufferedReader reader = new BufferedReader(new FileReader(fileDeTari));
-//			BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-//
-//			String checkLine;
-//			String linie;
-//			boolean existId = false;
-//
-//			while ((checkLine = reader.readLine()) != null) {
-//
-//				for (int i = 0; i < checkLine.length(); i++) {
-//
-//					if (checkLine.charAt(i) == ' ') {
-//						break;
-//					} else {
-//						ords = ords + checkLine.charAt(i);
-//					}
-//				}
-//
-//				if (ord.compareTo(ords) == 0) {
-//					existId = true;
-//					break;
-//				}
-//				ords = "";
-//			}
-//
-//			if (existId) {
-//
-//				BufferedReader rewrite = new BufferedReader(new FileReader(fileDeTari));
-//
-//				while ((linie = rewrite.readLine()) != null) {
-//					if (linie.equals(checkLine))
-//						continue;
-//					writer.write(linie);
-//					writer.newLine();
-//				}
-//
-//				System.out.println("------------------------------------------------------");
-//				System.out.println(">Studentul a fost șters!");
-//				rewrite.close();
-//			} else {
-//				System.out.println("------------------------------------------------------");
-//				System.out.println(">Studentul nu a fost șters sau nu există!");
-//			}
-//
-//			reader.close();
-//			writer.close();
-//			reader = new BufferedReader(new FileReader(tempFile));
-//			writer = new BufferedWriter(new FileWriter(fileDeTari));
-//
-//			while ((linie = reader.readLine()) != null) {
-//				if (linie.equals(checkLine))
-//					continue;
-//				writer.write(linie);
-//				writer.newLine();
-//			}
-//			reader.close();
-//			writer.close();
-//			tempFile.delete();
-//
-//			meniu.pauseMenu();
-//		} else {
-//			meniu.errorOP(5);
-//			meniu.pauseMenu();
-//		}
-//	}
+	public void eliminareTara() throws IOException {
+
+		if (fileIsAssigned) {
+
+			this.afisareFisier();
+			System.out.println("------------------------------------------------------");
+			System.out.println("Introduceți numele țării pentru ștergere ");
+			String countryNameToDelete = read.next();
+			System.out.println("<--------------------Căutare Țară-------------------->");
+
+			File tempFile = new File("temp");
+			ObjectInputStream objInputStream = new ObjectInputStream(new FileInputStream(fileDeTari));
+//			ObjectOutputStream objOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile));
+
+			Country country;
+			boolean exitsCountry = false;
+			try {
+				// editam numele dupa conditie
+				if (countryNameToDelete.length() > 3) {
+					countryNameToDelete = countryNameToDelete.substring(0, 1).toUpperCase()
+							+ countryNameToDelete.substring(1, 3);
+				} else {
+					countryNameToDelete = countryNameToDelete.substring(0, 1).toUpperCase();
+				}
+				// afisarea tarei care va fi strearsa din file
+				System.out.println(countryNameToDelete);
+				while (true) {
+					country = (Country) objInputStream.readObject();
+					if (country != null) {
+						if (country.getName().equalsIgnoreCase(countryNameToDelete)) {
+							System.out.println("------------------------------------------------------");
+							country.showDataOfCountry();
+							exitsCountry = true;
+							break;
+						}
+					}
+				}
+			} catch (ClassNotFoundException | java.io.EOFException end) {
+				System.out.println("------------------------------------------------------");
+			} finally {
+				objInputStream.close();
+			}
+
+			if (exitsCountry) {
+
+				ObjectOutputStream objOutputStreamHeader = new ObjectOutputStream(new FileOutputStream(tempFile));
+				AppendableObjectOutputStream objOutStreamAppend = new AppendableObjectOutputStream(
+						new FileOutputStream(tempFile, true));
+				ObjectInputStream objInputStreamCopy = new ObjectInputStream(new FileInputStream(fileDeTari));
+				boolean exitsHeader = false;
+
+				// citirea obiectelor fara obj cu numele == countryNameToDelete in temp file
+				try {
+					country = (Country) objInputStreamCopy.readObject();
+					if (country != null) {
+						if (!(country.getName().equalsIgnoreCase(countryNameToDelete))) {
+							if (exitsHeader) {
+								objOutStreamAppend.writeObject(country);
+							} else {
+								objOutputStreamHeader.writeObject(country);
+								objOutputStreamHeader.close();
+							}
+						}
+					}
+
+				} catch (ClassNotFoundException | java.io.EOFException end) {
+
+				} finally {
+					objOutStreamAppend.close();
+					objInputStreamCopy.close();
+				}
+
+				// copierea din temp in file original si stergerea temp
+				objInputStreamCopy = new ObjectInputStream(new FileInputStream(tempFile));
+				objOutputStreamHeader = new ObjectOutputStream(new FileOutputStream(fileDeTari));
+				objOutStreamAppend = new AppendableObjectOutputStream(new FileOutputStream(fileDeTari, true));
+
+				try {
+					country = (Country) objInputStreamCopy.readObject();
+					if (country != null) {
+						if (exitsHeader) {
+							objOutStreamAppend.writeObject(country);
+						} else {
+							objOutputStreamHeader.writeObject(country);
+							objOutputStreamHeader.close();
+						}
+					}
+
+				} catch (ClassNotFoundException | java.io.EOFException end) {
+
+				} finally {
+					objOutStreamAppend.close();
+					objInputStreamCopy.close();
+				//	tempFile.delete();
+				}
+
+				System.out.println("------------------------------------------------------");
+				System.out.println(">Țara a fost ștersă!");
+			} else {
+				System.out.println("------------------------------------------------------");
+				System.out.println(">Țara nu a fost ștersă sau nu există!");
+			}
+
+			meniu.pauseMenu();
+		} else {
+			meniu.errorOP(5);
+			meniu.pauseMenu();
+		}
+	}
 
 	public void assignFile(String str) throws IOException {
 

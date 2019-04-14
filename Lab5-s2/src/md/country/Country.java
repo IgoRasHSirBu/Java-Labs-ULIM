@@ -75,7 +75,7 @@ public class Country implements Serializable {
 		if (name.length() > 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
 		} else {
-			this.name = name;
+			this.name = name.substring(0,1).toUpperCase();
 		}
 	}
 

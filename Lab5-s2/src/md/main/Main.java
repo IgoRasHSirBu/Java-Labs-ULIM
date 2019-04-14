@@ -134,7 +134,7 @@ public class Main {
 				case 2:
 					meniu.clrscr();
 					meniu.opEliminareCountryMeniu();
-//		TODO : 		tariFile.eliminareStudent();
+		TODO : 		tariFile.eliminareTara();
 					break;
 				case 9:
 					meniu.clrscr();
