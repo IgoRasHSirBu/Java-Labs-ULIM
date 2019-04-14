@@ -126,7 +126,7 @@ public class FisierTari {
 			System.out.println("------------------ [Introducere date] ----------------");
 			System.out.println(">>Introduceți tipul Țării:");
 			System.out.println(
-					">\"EuropeanCountry\"\n>\"AsianCountry\"\n>\"EuropeanUnionCountry\"\n>\"Country\" (alt tip)");
+					">\"European Country\"\n>\"Asian Country\"\n>\"European Union Country\"\n>\"Country\" (alt tip)");
 			System.out.println("------------------------------------------------------");
 			System.out.println(">Introduceți alegerea: ");
 
