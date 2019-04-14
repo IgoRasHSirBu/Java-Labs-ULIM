@@ -54,25 +54,28 @@ public class FisierTari {
 		if (fileIsAssigned) {
 			System.out.println("[----------------------------------------------------]");
 
-			FileInputStream fileInputStream = new FileInputStream(fileDeTari);
-			ObjectInputStream objInputStream = new ObjectInputStream(fileInputStream);
+			if (fileDeTari.length() != 0L) {
+				FileInputStream fileInputStream = new FileInputStream(fileDeTari);
+				ObjectInputStream objInputStream = new ObjectInputStream(fileInputStream);
 
-			Country country;
-			try {
-				while (true) {
-					country = (Country) objInputStream.readObject();
-					if (country != null) {
-						System.out.println("------------------------------------------------------");
-						country.showDataOfCountry();
+				Country country;
+				try {
+					while (true) {
+						country = (Country) objInputStream.readObject();
+						if (country != null) {
+							System.out.println("------------------------------------------------------");
+							country.showDataOfCountry();
+						}
 					}
+				} catch (ClassNotFoundException | java.io.EOFException end) {
+					System.out.println("------------------------------------------------------");
+				} finally {
+					objInputStream.close();
 				}
-			} catch (ClassNotFoundException | java.io.EOFException end) {
-				System.out.println("------------------------------------------------------");
-			} finally {
-				objInputStream.close();
-			}
 
+			}
 			meniu.pauseMenu();
+
 		} else {
 			meniu.errorOP(5);
 			meniu.pauseMenu();
