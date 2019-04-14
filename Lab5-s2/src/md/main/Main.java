@@ -91,14 +91,14 @@ public class Main {
 				tariFile.checkAssign();
 				oper = meniu.opPrelucrareDate();
 				switch (oper) {
-				case 1:// folosind contains
+				case 1:// afisarea tari din europa
 					meniu.clrscr();
-		TODO : 					tariFile.afisareTariDinContinentul("Europa");
+					tariFile.afisareTariDinContinentul("Europa");
 					meniu.pauseMenu();
 					break;
-				case 2:// folosind charAt in algoritmul propriu
+				case 2:// afisarea tari din asia
 					meniu.clrscr();
-//		TODO : tariFile.prelucrareDateDinFisierV2();
+					TODO: tariFile.afisareTariDinContinentul("Asia");
 					meniu.pauseMenu();
 					break;
 				case 3:// algoritmul V3 care verifica indeferent de low/up case sau de keybord
