@@ -56,7 +56,7 @@ public class Country implements Serializable {
 
 	public Country(String name, double population) {
 		this();
-		if (name.length() > 3) {
+		if (name.length() >= 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
 		} else {
 			this.name = name;
@@ -68,7 +68,7 @@ public class Country implements Serializable {
 
 	public Country(String name) {
 		this();
-		if (name.length() > 3) {
+		if (name.length() >= 3) {
 			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
 		} else {
 			this.name = name;
