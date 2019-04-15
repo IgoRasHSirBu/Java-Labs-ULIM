@@ -1,8 +1,10 @@
 package kek;
 
 import java.util.Comparator;
+
 /**
  * Compare 2 countries by population
+ * 
  * @author Fanncy
  *
  */

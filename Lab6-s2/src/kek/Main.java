@@ -5,8 +5,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
- * Provides examples of using ArrayList and LinkedList
- * also Comparator for sorting List
+ * Provides examples of using ArrayList and LinkedList also Comparator for
+ * sorting List
+ * 
  * @author Fanncy
  *
  */
@@ -47,18 +48,19 @@ public class Main {
 		AsianCountry asc1 = new AsianCountry("Japonia", 377.973, "Yen");
 		countryList.add(asc1);
 
-		System.out.println("Afișare cu ajutorul metodei size() din ArrayList");
+		System.out.println("Afișare cu ajutorul metodei size() din ArrayList");// ss1
 		System.out.println("----------------------------------------------");
 		for (int i = 0; i < countryList.size(); i++) {
 			countryList.get(i).showDataOfCountry();
-			if (countryList.get(i).getContinent().compareToIgnoreCase("Europa") == 0) {
+			if (countryList.get(i).getContinent().compareToIgnoreCase("Europa") == 0) {// copy country from "Europa"
+																						// only
 				countryLink.add(countryList.get(i));
 			}
 			System.out.println("----------------------------------------------");
 		}
 
 		iterator = countryLink.iterator();
-		System.out.println("Afișare cu iterator din LinkedList <Țările doar din europa>");
+		System.out.println("Afișare cu iterator din LinkedList <Țările doar din europa>");// ss2
 		System.out.println("----------------------------------------------");
 		while (iterator.hasNext()) {
 			iterator.next().showDataOfCountry();
@@ -67,7 +69,24 @@ public class Main {
 
 		countryList.sort(popComparator);// sorting list
 		iterator = countryList.iterator();
-		System.out.println("Afișarea Țărilor din ArrayList sortate după populație");
+		System.out.println("Afișarea Țărilor din ArrayList sortate după populație");// ss3
+		System.out.println("----------------------------------------------");
+		while (iterator.hasNext()) {
+			iterator.next().showDataOfCountry();
+			System.out.println("----------------------------------------------");
+		}
+
+		countryLink.removeAll(countryLink);// Empty List
+		iterator = countryList.iterator();// Deleting all country where continent != "Europa"
+		while (iterator.hasNext()) {
+			Country country = iterator.next();
+			if (!(country.getContinent().equalsIgnoreCase("Europa"))) {
+				countryLink.add(country);
+			}
+		}
+
+		iterator = countryLink.iterator();
+		System.out.println("Afișarea Țărilor din LinkedList țările care nu sunt din Europa");// ss4
 		System.out.println("----------------------------------------------");
 		while (iterator.hasNext()) {
 			iterator.next().showDataOfCountry();
@@ -75,7 +94,7 @@ public class Main {
 		}
 
 		iterator = countryList.iterator();
-		System.out.println("Afișarea Țărilor din ArrayList sortate după populație cu filtrare fără de 0");
+		System.out.println("Afișarea Țărilor din ArrayList sortate după populație cu filtrare fără de 0");// ss5
 		System.out.println("----------------------------------------------");
 		while (iterator.hasNext()) {
 			Country country = iterator.next();
@@ -84,5 +103,6 @@ public class Main {
 				System.out.println("----------------------------------------------");
 			}
 		}
+
 	}
 }
