@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+/**
+ * Provides examples of using ArrayList and LinkedList
+ * also Comparator for sorting List
+ * @author Fanncy
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
 
 		ArrayList<Country> countryList = new ArrayList<>();
 		LinkedList<Country> countryLink = new LinkedList<>();
+		PopulationComparator popComparator = new PopulationComparator();
+		Iterator<Country> iterator;
 
 		Country c = new Country("Rusia", 144.5);
 		countryList.add(c);
@@ -39,24 +47,42 @@ public class Main {
 		AsianCountry asc1 = new AsianCountry("Japonia", 377.973, "Yen");
 		countryList.add(asc1);
 
-		Iterator<Country> iterator = countryList.iterator();
-		System.out.println("Afișare cu iterator din ArrayList");
+		System.out.println("Afișare cu ajutorul metodei size() din ArrayList");
 		System.out.println("----------------------------------------------");
-		for (int i = 0; iterator.hasNext(); i++) {
-			Country country = iterator.next();
-			country.showDataOfCountry();
-			if (country.getContinent().compareToIgnoreCase("Europa") == 0) {
-				countryLink.add(country);
+		for (int i = 0; i < countryList.size(); i++) {
+			countryList.get(i).showDataOfCountry();
+			if (countryList.get(i).getContinent().compareToIgnoreCase("Europa") == 0) {
+				countryLink.add(countryList.get(i));
 			}
 			System.out.println("----------------------------------------------");
 		}
 
 		iterator = countryLink.iterator();
-		System.out.println("Afișare cu iterator din LinkedList");
+		System.out.println("Afișare cu iterator din LinkedList <Țările doar din europa>");
 		System.out.println("----------------------------------------------");
-		for (int i = 0; iterator.hasNext(); i++) {
+		while (iterator.hasNext()) {
 			iterator.next().showDataOfCountry();
 			System.out.println("----------------------------------------------");
+		}
+
+		countryList.sort(popComparator);// sorting list
+		iterator = countryList.iterator();
+		System.out.println("Afișarea Țărilor din ArrayList sortate după populație");
+		System.out.println("----------------------------------------------");
+		while (iterator.hasNext()) {
+			iterator.next().showDataOfCountry();
+			System.out.println("----------------------------------------------");
+		}
+
+		iterator = countryList.iterator();
+		System.out.println("Afișarea Țărilor din ArrayList sortate după populație cu filtrare fără de 0");
+		System.out.println("----------------------------------------------");
+		while (iterator.hasNext()) {
+			Country country = iterator.next();
+			if (country.getPopulation() > 0) {
+				country.showDataOfCountry();
+				System.out.println("----------------------------------------------");
+			}
 		}
 	}
 }
