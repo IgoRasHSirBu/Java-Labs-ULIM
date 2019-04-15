@@ -1,6 +1,8 @@
 package kek;
 
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -47,6 +49,9 @@ public class Main {
 
 		AsianCountry asc1 = new AsianCountry("Japonia", 377.973, "Yen");
 		countryList.add(asc1);
-
+		//TODO: cate zile au trecut de la arderare la ue :!
+		
+		 Calendar cal = Calendar.getInstance();
+		 System.out.println(cal.getTime());
 	}
 }
