@@ -15,13 +15,14 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		ArrayList<Country> countryList = new ArrayList<>();
-		Iterator<Country> iterator;
+		ArrayList<EuropeanUnionCountry> countryList = new ArrayList<>();
 
 		// creating an instance of calendar
 		Calendar calendar = Calendar.getInstance();
 
 		// displaying current date
+		System.out.println("----------------------------------------------------");// ss1
+		System.out.println("Data curentă");
 		System.out.println(calendar.getTime());
 		System.out.println("Anul curent:  " + calendar.get(Calendar.YEAR));
 		System.out.println("Luna curentă: " + calendar.get(Calendar.MONTH));// 0 = December
@@ -33,7 +34,8 @@ public class Main {
 		int date = 17;
 		// setting new date
 		calendar.set(year, month, date);
-
+		System.out.println("----------------------------------------------------");// ss2
+		System.out.println("Data schimbată");
 		System.out.println(calendar.getTime());
 		System.out.println("Anul schimbat este:  " + calendar.get(Calendar.YEAR));
 		System.out.println("Luna schimbată este: " + calendar.get(Calendar.MONTH));
@@ -51,10 +53,15 @@ public class Main {
 		EuropeanUnionCountry euc3 = new EuropeanUnionCountry("Germania", 225.1, "EUR", 1958);
 		countryList.add(euc3);
 
-		// TODO: cate zile au trecut de la arderare la ue :!
-
+		// displaying years since joining the EU
+		System.out.println("----------------------------------------------------");// ss3
 		Calendar currentDate = Calendar.getInstance();
-		System.out.println(currentDate.get(Calendar.YEAR) - euc1.getYearMember());
+		for (EuropeanUnionCountry euroCountry : countryList) {
+			System.out.println("Țara: " + euroCountry.getName());
+			System.out.println("Ani trecuti din momentul aderarii la UE: "
+					+ (currentDate.get(Calendar.YEAR) - euroCountry.getYearMember()) + " ani");
+			System.out.println("----------------------------------------------------");
+		}
 
 	}
 }
