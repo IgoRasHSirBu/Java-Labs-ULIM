@@ -3,7 +3,6 @@ package kek;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 /**
  * Provides examples of using ArrayList and LinkedList also Comparator for
@@ -17,27 +16,33 @@ public class Main {
 	public static void main(String[] args) {
 
 		ArrayList<Country> countryList = new ArrayList<>();
-		LinkedList<Country> countryLink = new LinkedList<>();
-		PopulationComparator popComparator = new PopulationComparator();
 		Iterator<Country> iterator;
 
-		Country c = new Country("Rusia", 144.5);
-		countryList.add(c);
+		// creating an instance of calendar
+		Calendar calendar = Calendar.getInstance();
 
-		countryList.add(new EuropeanUnionCountry());
+		// displaying current date
+		System.out.println(calendar.getTime());
+		System.out.println("Anul curent:  " + calendar.get(Calendar.YEAR));
+		System.out.println("Luna curentă: " + calendar.get(Calendar.MONTH));// 0 = December
+		System.out.println("Ziua curentă: " + calendar.get(Calendar.DATE));
 
-		EuropeanCountry ec1 = new EuropeanCountry("Moldova", 3.35, "Chișinău", "Europa", "Republică parlamentară",
-				"Igor Dodon", 33.846, "MDL");
-		countryList.add(ec1);
+		// setting new date
+		int year = 1999;
+		int month = 7;// 0 = December
+		int date = 17;
+		// setting new date
+		calendar.set(year, month, date);
 
-		EuropeanCountry ec2 = new EuropeanCountry("Austria", "Euro");
-		countryList.add(ec2);
+		System.out.println(calendar.getTime());
+		System.out.println("Anul schimbat este:  " + calendar.get(Calendar.YEAR));
+		System.out.println("Luna schimbată este: " + calendar.get(Calendar.MONTH));
+		System.out.println("Ziua schimbată este: " + calendar.get(Calendar.DATE));
 
-		EuropeanCountry ec3 = new EuropeanCountry("Ucraina", 603.628, "UAH");
-		countryList.add(ec3);
-
+		// creating instances of EuropeanUnionCountry
 		EuropeanUnionCountry euc1 = new EuropeanUnionCountry("Franța", 66.628, "Paris", "Europa",
 				"Republică semi-prezidențială", "Emmanuel Macron", 674.843, "Euro", 1958);
+		// adding to an ArrayList
 		countryList.add(euc1);
 
 		EuropeanUnionCountry euc2 = new EuropeanUnionCountry("România", 19.64, 238.397, "RON", 2007);
@@ -46,11 +51,10 @@ public class Main {
 		EuropeanUnionCountry euc3 = new EuropeanUnionCountry("Germania", 225.1, "EUR", 1958);
 		countryList.add(euc3);
 
-		AsianCountry asc1 = new AsianCountry("Japonia", 377.973, "Yen");
-		countryList.add(asc1);
-		//TODO: cate zile au trecut de la arderare la ue :!
-		
-		 Calendar cal = Calendar.getInstance();
-		 System.out.println(cal.getTime());
+		// TODO: cate zile au trecut de la arderare la ue :!
+
+		Calendar currentDate = Calendar.getInstance();
+		System.out.println(currentDate.get(Calendar.YEAR) - euc1.getYearMember());
+
 	}
 }
