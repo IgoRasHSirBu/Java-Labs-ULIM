@@ -17,7 +17,7 @@ public class Main {
 		Menu meniu = new Menu();// menu obj
 		String nameFile;
 		FisierTari tariFile = new FisierTari();
-		// menu loop
+		// menu loop :3
 		do {
 			meniu.clrscr();
 			tariFile.checkAssign();
