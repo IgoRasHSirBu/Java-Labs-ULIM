@@ -1,5 +1,8 @@
 package md.country;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Used for storing data for a Asian country object
  *
@@ -57,8 +60,9 @@ public class AsianCountry extends Country {
     }
 
     @Override
-    public void showDataOfCountry() {
-        super.showDataOfCountry();
-        System.out.print("Suprafața: " + this.area + " km\u00B2" + "\nValuta: " + this.currency + '\n');
+    public ArrayList<String> getDataOfCountry() {
+        ArrayList<String> dataList = super.getDataOfCountry();
+        dataList.addAll(Arrays.asList(Double.toString(this.area), this.currency));
+        return dataList;
     }
 }

@@ -47,7 +47,7 @@ public class FisierTari {
 //                        country = (Country) objInputStream.readObject();
 //                        if (country != null) {
 //                            System.out.println("------------------------------------------------------");
-//                            country.showDataOfCountry();
+//                            country.getDataOfCountry();
 //                        }
 //                    }
 //                } catch (ClassNotFoundException | java.io.EOFException end) {
@@ -186,7 +186,7 @@ public class FisierTari {
 //                    if (country != null) {
 //                        if (country.getContinent().equalsIgnoreCase(continent)) {
 //                            System.out.println("------------------------------------------------------");
-//                            country.showDataOfCountry();
+//                            country.getDataOfCountry();
 //                        }
 //                    }
 //                }
@@ -251,7 +251,7 @@ public class FisierTari {
 //                    if (country != null) {
 //                        if (country.getName().equalsIgnoreCase(countryNameToDelete)) {
 //                            System.out.println("------------------------------------------------------");
-//                            country.showDataOfCountry();
+//                            country.getDataOfCountry();
 //                            exitsCountry = true;
 //                            break;
 //                        }

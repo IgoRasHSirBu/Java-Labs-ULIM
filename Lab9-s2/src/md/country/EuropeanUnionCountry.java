@@ -1,5 +1,7 @@
 package md.country;
 
+import java.util.ArrayList;
+
 /**
  * Used for storing data for a European Union country object
  *
@@ -35,8 +37,9 @@ public class EuropeanUnionCountry extends EuropeanCountry {
     }
 
     @Override
-    public void showDataOfCountry() {
-        super.showDataOfCountry();
-        System.out.print("Aderare la UE " + this.yearMember + '\n');
+    public ArrayList<String> getDataOfCountry() {
+        ArrayList<String> dataList = super.getDataOfCountry();
+        dataList.add(Integer.toString(this.yearMember));
+        return dataList;
     }
 }

@@ -1,6 +1,8 @@
 package md.country;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Used for storing data for a specific country object
@@ -129,10 +131,9 @@ public class Country implements Serializable {
         return this.leader;
     }
 
-    // afiseaza toate datele
-    public void showDataOfCountry() {
-        System.out.print("Țara: " + this.name + "\nContinentul: " + this.continent + "\nCapitala: " + this.capital
-                + "\nConducător " + this.leader + "\nFormă de guvernare: " + this.government + "\nPopulație: "
-                + this.population + " Mln\n");
+    // Get Data as an ArrayList
+    public ArrayList<String> getDataOfCountry() {
+        return new ArrayList<String>(Arrays.asList(this.name, this.continent, this.capital,
+                this.leader, this.government, Double.toString(this.population)));
     }
 }
