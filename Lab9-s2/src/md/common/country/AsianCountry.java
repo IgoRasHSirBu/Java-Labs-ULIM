@@ -1,28 +1,28 @@
-package md.country;
+package md.common.country;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Used for storing data for a European country object
+ * Used for storing data for a Asian country object
  *
  * @author Fanncy
  */
-public class EuropeanCountry extends Country {
+public class AsianCountry extends Country {
 
     private static final long serialVersionUID = 1L;
     private double area;
     private String currency;
-    private final String CONTINENT = "Europa";
+    private final String CONTINENT = "Asia";
 
-    public EuropeanCountry() {
+    public AsianCountry() {
         area = 0.0;
         currency = "Unknown";
         super.setContinent(CONTINENT);
     }
 
-    EuropeanCountry(String name, double population, String capital, String continent, String government, String leader,
-                    double area, String currency) {
+    public AsianCountry(String name, double population, String capital, String continent, String government,
+                        String leader, double area, String currency) {
         super(name, population, capital, continent, government, leader);
         if (currency.length() >= 3) {
             this.currency = currency.substring(0, 3).toUpperCase();

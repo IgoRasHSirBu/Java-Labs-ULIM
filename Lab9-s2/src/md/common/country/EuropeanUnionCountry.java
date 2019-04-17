@@ -1,4 +1,4 @@
-package md.country;
+package md.common.country;
 
 import java.util.ArrayList;
 

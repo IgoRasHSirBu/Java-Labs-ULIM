@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3eea2e4-e4e5-4bf2-9c7a-716620ab41bf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/md/frames/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/md/frames/MainFrame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/md/frames/App.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/md/frames/MainFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/md/main/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/md/frames/App.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/md/frames/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/md/frames/App.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -41,18 +38,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/md/frames/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+            <state relative-caret-position="308">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/md/frames/App.form">
-          <provider selected="true" editor-type-id="ui-designer" />
         </entry>
       </file>
     </leaf>
@@ -155,14 +147,6 @@
               <item name="md" type="462c0819:PsiDirectoryNode" />
               <item name="frames" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Lab9-s2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Lab9-s2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="md" type="462c0819:PsiDirectoryNode" />
-              <item name="frames" type="462c0819:PsiDirectoryNode" />
-              <item name="App" type="e9f4de52:FormNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -236,13 +220,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Learn" order="2" />
-      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.49840257" visible="true" weight="0.14285715" />
-      <window_info x="17" y="514" width="376" height="466" id="Structure" order="4" sideWeight="0.50159746" side_tool="true" visible="true" weight="0.14285715" />
+      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.4994641" visible="true" weight="0.14285715" />
+      <window_info x="17" y="514" width="376" height="466" id="Structure" order="4" sideWeight="0.5005359" side_tool="true" visible="true" weight="0.14285715" />
       <window_info id="Favorites" order="5" sideWeight="0.5005359" side_tool="true" weight="0.20042644" />
       <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3290461" />
@@ -250,7 +233,7 @@
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.3290461" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.3290461" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.3290461" />
+      <window_info anchor="bottom" id="Run" order="5" weight="0.3290461" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -355,8 +338,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/md/frames/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+        <state relative-caret-position="308">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
