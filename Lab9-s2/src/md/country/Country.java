@@ -1,158 +1,138 @@
 package md.country;
 
 import java.io.Serializable;
+
 /**
  * Used for storing data for a specific country object
- * @author Fanncy
  *
+ * @author Fanncy
  */
 public class Country implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private String name;
-	private double population;
-	private String capital;
-	private String continent;
-	private String government;
-	private String leader;
+    private static final long serialVersionUID = 1L;
+    private String name;
+    private double population;
+    private String capital;
+    private String continent;
+    private String government;
+    private String leader;
 
-	// Constructors
-	public Country() {
-		this.name = this.capital = this.continent = this.government = this.leader = "Unknown";
-	}
+    // Constructors
+    public Country() {
+        this.name = this.capital = this.continent = this.government = this.leader = "Unknown";
+    }
 
-	public Country(String name, double population, String capital, String continent, String government, String leader) {
-		if (name.length() >= 3) {
-			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
-		} else {
-			this.name = "Unknown";
-		}
-		if (population > 0) {
-			this.population = population;
-		} else {
-			System.out.println("Unknown Population!");
-		}
-		if (capital.length() < 3) {
-			this.capital = "Unknown Capital";
-		} else {
-			this.capital = capital;
-		}
-		if (continent.length() < 3) {
-			this.continent = "Unknown Continent";
-		} else {
-			this.continent = continent;
-		}
-		if (government.length() < 3) {
-			this.government = "Unknown Government";
-		} else {
-			this.government = government;
-		}
-		if (leader.length() < 3) {
-			this.leader = "Unknown Leader";
-		} else {
-			this.leader = leader;
-		}
-	}
+    public Country(String name, double population, String capital, String continent, String government, String leader) {
+        if (name.length() >= 3) {
+            this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
+        } else {
+            this.name = "Unknown";
+        }
+        if (population > 0) {
+            this.population = population;
+        } else {
+            System.out.println("Unknown Population!");
+        }
+        if (capital.length() < 3) {
+            this.capital = "Unknown Capital";
+        } else {
+            this.capital = capital;
+        }
+        if (continent.length() < 3) {
+            this.continent = "Unknown Continent";
+        } else {
+            this.continent = continent;
+        }
+        if (government.length() < 3) {
+            this.government = "Unknown Government";
+        } else {
+            this.government = government;
+        }
+        if (leader.length() < 3) {
+            this.leader = "Unknown Leader";
+        } else {
+            this.leader = leader;
+        }
+    }
 
-	public Country(String name, double population) {
-		this();
-		if (name.length() >= 3) {
-			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
-		} else {
-			this.name = name;
-		}
-		if (population > 0) {
-			this.population = population;
-		}
-	}
+    // setters
+    public void setName(String name) {
+        if (name.length() > 3) {
+            this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
+        } else {
+            this.name = name.substring(0, 1).toUpperCase();
+        }
+    }
 
-	public Country(String name) {
-		this();
-		if (name.length() >= 3) {
-			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
-		} else {
-			this.name = name;
-		}
-	}
+    public void setPopulation(double population) {
+        if (population > 0) {
+            this.population = population;
+        } else {
+            System.out.println("Unknown Population!");
+        }
+    }
 
-	// setters
-	public void setName(String name) {
-		if (name.length() > 3) {
-			this.name = name.substring(0, 1).toUpperCase() + name.substring(1, 3);
-		} else {
-			this.name = name.substring(0,1).toUpperCase();
-		}
-	}
+    public void setCapital(String capital) {
+        if (capital.length() < 3) {
+            this.capital = "Unknown Capital";
+        } else {
+            this.capital = capital;
+        }
+    }
 
-	public void setPopulation(double population) {
-		if (population > 0) {
-			this.population = population;
-		} else {
-			System.out.println("Unknown Population!");
-		}
-	}
+    public void setContinent(String continent) {
+        if (continent.length() < 3) {
+            this.continent = "Unknown Continent";
+        } else {
+            this.continent = continent;
+        }
+    }
 
-	public void setCapital(String capital) {
-		if (capital.length() < 3) {
-			this.capital = "Unknown Capital";
-		} else {
-			this.capital = capital;
-		}
-	}
+    public void setGovernment(String government) {
+        if (government.length() < 3) {
+            this.government = "Unknown Government";
+        } else {
+            this.government = government;
+        }
+    }
 
-	public void setContinent(String continent) {
-		if (continent.length() < 3) {
-			this.continent = "Unknown Continent";
-		} else {
-			this.continent = continent;
-		}
-	}
+    public void setLeader(String leader) {
+        if (leader.length() < 3) {
+            this.leader = "Unknown Leader";
+        } else {
+            this.leader = leader;
+        }
+    }
 
-	public void setGovernment(String government) {
-		if (government.length() < 3) {
-			this.government = "Unknown Government";
-		} else {
-			this.government = government;
-		}
-	}
+    // getters
+    public String getName() {
+        return this.name;
+    }
 
-	public void setLeader(String leader) {
-		if (leader.length() < 3) {
-			this.leader = "Unknown Leader";
-		} else {
-			this.leader = leader;
-		}
-	}
+    public double getPopulation() {
+        return this.population;
+    }
 
-	// getters
-	public String getName() {
-		return this.name;
-	}
+    public String getCapital() {
+        return this.capital;
+    }
 
-	public double getPopulation() {
-		return this.population;
-	}
+    public String getContinent() {
+        return this.continent;
+    }
 
-	public String getCapital() {
-		return this.capital;
-	}
+    public String getGovernment() {
+        return this.government;
+    }
 
-	public String getContinent() {
-		return this.continent;
-	}
+    public String getLeader() {
+        return this.leader;
+    }
 
-	public String getGovernment() {
-		return this.government;
-	}
-
-	public String getLeader() {
-		return this.leader;
-	}
-
-	// afiseaza toate datele
-	public void showDataOfCountry() {
-		System.out.print("Țara: " + this.name + "\nContinentul: " + this.continent + "\nCapitala: " + this.capital
-				+ "\nConducător " + this.leader + "\nFormă de guvernare: " + this.government + "\nPopulație: "
-				+ this.population + " Mln\n");
-	}
+    // afiseaza toate datele
+    public void showDataOfCountry() {
+        System.out.print("Țara: " + this.name + "\nContinentul: " + this.continent + "\nCapitala: " + this.capital
+                + "\nConducător " + this.leader + "\nFormă de guvernare: " + this.government + "\nPopulație: "
+                + this.population + " Mln\n");
+    }
 }
