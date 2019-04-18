@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
 
 		// Table Initialize
 		String[] header = { "No.", "Name", "Capital", "Leader", "Government", "Continent", "Population" };
-		dTabelDataModel = new DefaultTableModel(header, 10);
+		dTabelDataModel = new DefaultTableModel(header, 0);
 		tableForCountryData = new JTable(dTabelDataModel);
 		scrollPaneForTable.setViewportView(tableForCountryData);
 
@@ -94,6 +94,7 @@ public class MainFrame extends JFrame {
 					countryList = countryFile.getData();// and check if it is corrupted
 					updateAllPanels();
 					updatePanelInfo();
+					updateDataTabel();
 				}
 			}
 		});
@@ -170,6 +171,25 @@ public class MainFrame extends JFrame {
 	}
 
 	/**
+	 * Update date in to tabel
+	 */
+	private void updateDataTabel() {
+		// deleting all rows
+		for (int i = dTabelDataModel.getRowCount() - 1; i >= 0; i--) {
+			dTabelDataModel.removeRow(i);
+		}
+		// adding new/update rows
+		if (countryList != null && countryFile.isAssigned) {
+			for (int i = 0; i < countryList.size(); i++) {
+				dTabelDataModel.addRow(new String[] { Integer.toString(i), countryList.get(i).getName(),
+						countryList.get(i).getCapital(), countryList.get(i).getLeader(),
+						countryList.get(i).getGovernment(), countryList.get(i).getContinent(),
+						Double.toString(countryList.get(i).getPopulation()) });
+			}
+		}
+	}
+
+	/**
 	 * Enable/Disable components
 	 */
 	private void updateAllPanels() {
@@ -217,7 +237,5 @@ public class MainFrame extends JFrame {
 		} else {
 			lblNumberOfCountries.setText("Number of Countries: ");
 		}
-
 	}
-
 }
