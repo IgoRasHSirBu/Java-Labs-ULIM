@@ -6,7 +6,7 @@ import java.util.Scanner;
 /**
  * 
  * @author Fanncy
- *
+ * :3
  */
 public class Main {
 

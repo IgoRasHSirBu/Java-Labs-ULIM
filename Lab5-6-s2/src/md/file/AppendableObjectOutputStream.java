@@ -8,7 +8,7 @@ import java.io.OutputStream;
  * Used for appending data to a file
  * 
  * @author Fanncy
- *
+ * :3
  */
 public class AppendableObjectOutputStream extends ObjectOutputStream {
 	// constructor

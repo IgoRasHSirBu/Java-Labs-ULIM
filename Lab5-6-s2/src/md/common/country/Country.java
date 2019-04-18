@@ -4,7 +4,7 @@ import java.io.Serializable;
 /**
  * Used for storing data for a specific country object
  * @author Fanncy
- *
+ * :3
  */
 public class Country implements Serializable {
 

@@ -17,7 +17,7 @@ import md.main.Menu;
 
 /**
  * Operates with File and Country objects
- * 
+ * :3
  * @author Fanncy
  *
  */

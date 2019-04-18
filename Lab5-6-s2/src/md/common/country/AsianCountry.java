@@ -2,7 +2,7 @@ package md.common.country;
 /**
  * Used for storing data for a Asian country object
  * @author Fanncy
- *
+ * :3
  */
 public class AsianCountry extends Country {
 
