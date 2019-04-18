@@ -14,7 +14,7 @@ import md.common.country.*;
  *
  * @author Fanncy
  */
-public class FisierTari {
+public class CountryFile {
 
     File fileDeTari;
     public boolean fileIsAssigned = false;
