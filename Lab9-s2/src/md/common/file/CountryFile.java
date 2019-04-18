@@ -1,11 +1,14 @@
 package md.common.file;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import md.common.country.*;
 
@@ -16,12 +19,58 @@ import md.common.country.*;
  */
 public class CountryFile {
 
-    File fileDeTari;
-    public boolean fileIsAssigned = false;
-    String fileName = "countries";// default path
+	private File countryFile;
+	public boolean fileIsAssigned = false;
 
+	public CountryFile(File countryFile) {
+		this.countryFile = countryFile;
+//		fileIsAssigned = true;
+	}
 
+	public ArrayList<Country> getData() {
 
+		ArrayList<Country> countryList = new ArrayList<Country>();
+		ObjectInputStream objectInputStream;
+
+		try {
+			objectInputStream = new ObjectInputStream(new FileInputStream(countryFile));
+			Country c;
+			try {
+				c = (Country) objectInputStream.readObject();
+				while (c != null) {
+					countryList.add(c);
+				}
+				return countryList;
+			} catch (ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Corrupted!");
+				return null;
+			} finally {
+				objectInputStream.close();
+			}
+		} catch (FileNotFoundException e) {
+			try {
+				countryFile.createNewFile();
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " Cannot be created!");
+				return null;
+			}
+			JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " Has been created!");
+			return null;
+		} catch (EOFException e) {
+			JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Empty!");
+			return null;
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Corrupted!");
+			return null;
+		}
+
+//		if (!countryFile.exists()) {
+//			return null;
+//		} else {
+//			Country country = objectInputStream.defaultReadObject();
+//		}
+
+	}
 
 //    /**
 //     * Displays all data from file

@@ -2,17 +2,27 @@ package md.views;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import md.common.country.*;
+import md.common.file.CountryFile;
 
 public class MainFrame extends JFrame {
 
+	// Components of layout
 	private JTable tableForCountryData;
 	private JScrollPane scrollPaneForTable;
 	private JPanel panelMenu;
@@ -31,13 +41,22 @@ public class MainFrame extends JFrame {
 	private JButton btnShowAsianCountries;
 	private JButton btnShowOtherCountries;
 
+	// var declaration
+	private CountryFile countryFile;
+	private DefaultTableModel dTabelDataModel;
+	private ArrayList<Country> countryList;
+
+	// Constructor
 	public MainFrame() {
 
 		// Initialize
 		init();
 	}
 
-	public void init() {
+	/**
+	 * Initialize components of layout
+	 */
+	private void init() {
 
 		setResizable(false);
 		setSize(1200, 800);
@@ -48,7 +67,10 @@ public class MainFrame extends JFrame {
 		scrollPaneForTable.setBounds(140, 249, 1045, 511);
 		getContentPane().add(scrollPaneForTable);
 
-		tableForCountryData = new JTable();
+		// Tabel Initialize
+		String[] header = { "No.", "Name", "Capital", "Leader", "Government", "Continent", "Population" };
+		dTabelDataModel = new DefaultTableModel(header, 10);
+		tableForCountryData = new JTable(dTabelDataModel);
 		scrollPaneForTable.setViewportView(tableForCountryData);
 
 		panelMenu = new JPanel();
@@ -57,7 +79,23 @@ public class MainFrame extends JFrame {
 		getContentPane().add(panelMenu);
 		panelMenu.setLayout(null);
 
+		// add listener for openFile button
 		btnOpenFile = new JButton("Open File");
+		btnOpenFile.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				final JFileChooser fc = new JFileChooser();
+				int returnVal = fc.showOpenDialog(MainFrame.this);
+
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					countryFile = new CountryFile(fc.getSelectedFile());
+					countryList = countryFile.getData();
+//					JOptionPane.showMessageDialog(null, countryList.get(2).getName());
+				}
+			}
+
+		});
 
 		btnOpenFile.setBounds(70, 25, 150, 40);
 		panelMenu.add(btnOpenFile);
