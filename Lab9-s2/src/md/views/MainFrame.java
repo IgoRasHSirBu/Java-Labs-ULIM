@@ -52,6 +52,7 @@ public class MainFrame extends JFrame {
 
 		// Initialize
 		init();
+		updateAllPanels();
 	}
 
 	/**
@@ -68,7 +69,7 @@ public class MainFrame extends JFrame {
 		scrollPaneForTable.setBounds(140, 249, 1045, 511);
 		getContentPane().add(scrollPaneForTable);
 
-		// Tabel Initialize
+		// Table Initialize
 		String[] header = { "No.", "Name", "Capital", "Leader", "Government", "Continent", "Population" };
 		dTabelDataModel = new DefaultTableModel(header, 10);
 		tableForCountryData = new JTable(dTabelDataModel);
@@ -83,7 +84,6 @@ public class MainFrame extends JFrame {
 		// add listener for openFile button
 		btnOpenFile = new JButton("Open File");
 		btnOpenFile.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				final JFileChooser fc = new JFileChooser();
@@ -92,6 +92,7 @@ public class MainFrame extends JFrame {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					countryFile = new CountryFile(fc.getSelectedFile());
 					countryList = countryFile.getData();// and check if it is corrupted
+					updateAllPanels();
 					updatePanelInfo();
 				}
 			}
@@ -166,6 +167,39 @@ public class MainFrame extends JFrame {
 		btnShowOtherCountries.setBounds(70, 155, 160, 40);
 		panelQuery.add(btnShowOtherCountries);
 		setVisible(true);
+	}
+
+	/**
+	 * Enable/Disable components
+	 */
+	private void updateAllPanels() {
+		if (countryFile == null || !countryFile.isAssigned) {
+			btnAdd.setEnabled(false);
+			btnRemove.setEnabled(false);
+			btnShowAsianCountries.setEnabled(false);
+			btnShowEuropeanCountries.setEnabled(false);
+			btnShowOtherCountries.setEnabled(false);
+			tableForCountryData.setEnabled(false);
+			btnSave.setEnabled(false);
+			btnSaveAs.setEnabled(false);
+			lblWorkingInFile.setEnabled(false);
+			lblNumberOfCountries.setEnabled(false);
+			lblMinCountryPop.setEnabled(false);
+			lblMaxCountryPop.setEnabled(false);
+		} else {
+			btnAdd.setEnabled(true);
+			btnRemove.setEnabled(true);
+			btnShowAsianCountries.setEnabled(true);
+			btnShowEuropeanCountries.setEnabled(true);
+			btnShowOtherCountries.setEnabled(true);
+			tableForCountryData.setEnabled(true);
+			btnSave.setEnabled(true);
+			btnSaveAs.setEnabled(true);
+			lblWorkingInFile.setEnabled(true);
+			lblNumberOfCountries.setEnabled(true);
+			lblMinCountryPop.setEnabled(true);
+			lblMaxCountryPop.setEnabled(true);
+		}
 	}
 
 	/**
