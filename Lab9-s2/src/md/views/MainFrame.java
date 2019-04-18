@@ -70,7 +70,7 @@ public class MainFrame extends JFrame {
 		getContentPane().add(scrollPaneForTable);
 
 		// Table Initialize
-		String[] header = { "No.", "Name", "Capital", "Leader", "Government", "Continent", "Population" };
+		String[] header = { "No.", "Name", "Capital", "Leader", "Government", "Continent", "Population (Mln.)" };
 		dTabelDataModel = new DefaultTableModel(header, 0);
 		tableForCountryData = new JTable(dTabelDataModel);
 		scrollPaneForTable.setViewportView(tableForCountryData);
@@ -233,9 +233,19 @@ public class MainFrame extends JFrame {
 			lblWorkingInFile.setText("Working in File: ");
 		}
 		if (countryList != null) {
+			ArrayList<Country> sortedCountries = new ArrayList<Country>(countryList);
+			sortedCountries.sort(new PopulationComparator());
+			int max = sortedCountries.size() - 1;
+			int min = 0;
+			lblMaxCountryPop.setText("Country with max population: " + sortedCountries.get(max).getName() + " "
+					+ sortedCountries.get(max).getPopulation() + " Mln.");
+			lblMinCountryPop.setText("Country with min population: " + sortedCountries.get(min).getName() + " "
+					+ sortedCountries.get(min).getPopulation() + " Mln.");
 			lblNumberOfCountries.setText("Number of Countries: " + countryList.size());
 		} else {
 			lblNumberOfCountries.setText("Number of Countries: ");
+			lblMaxCountryPop.setText("Country with max population: ");
+			lblMinCountryPop.setText("Country with min population: ");
 		}
 	}
 }
