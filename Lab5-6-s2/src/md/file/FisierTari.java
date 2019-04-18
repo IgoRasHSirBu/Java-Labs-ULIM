@@ -8,10 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-import md.country.AsianCountry;
-import md.country.Country;
-import md.country.EuropeanCountry;
-import md.country.EuropeanUnionCountry;
+import md.common.country.AsianCountry;
+import md.common.country.Country;
+import md.common.country.EuropeanCountry;
+import md.common.country.EuropeanUnionCountry;
 import md.factory.CountryFactory;
 import md.main.Menu;
 

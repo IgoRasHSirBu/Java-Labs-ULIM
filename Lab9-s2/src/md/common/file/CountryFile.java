@@ -34,15 +34,17 @@ public class CountryFile {
 
 		try {
 			objectInputStream = new ObjectInputStream(new FileInputStream(countryFile));
-			Country c;
+
 			try {
-				c = (Country) objectInputStream.readObject();
+				Country c = (Country) objectInputStream.readObject();
 				while (c != null) {
 					countryList.add(c);
+					c = (Country) objectInputStream.readObject();
 				}
 				return countryList;
 			} catch (ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Corrupted!");
+				JOptionPane.showMessageDialog(null,
+						"File : " + countryFile.getName() + " is is corrupted, please select another file");
 				return null;
 			} finally {
 				objectInputStream.close();
@@ -57,18 +59,17 @@ public class CountryFile {
 			JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " Has been created!");
 			return null;
 		} catch (EOFException e) {
-			JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Empty!");
-			return null;
+			if (countryList.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Empty!");
+				return null;
+			} else {
+				return countryList;
+			}
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Corrupted!");
+			JOptionPane.showMessageDialog(null,
+					"File : " + countryFile.getName() + " is corrupted, please select another file");
 			return null;
 		}
-
-//		if (!countryFile.exists()) {
-//			return null;
-//		} else {
-//			Country country = objectInputStream.defaultReadObject();
-//		}
 
 	}
 

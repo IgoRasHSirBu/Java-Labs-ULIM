@@ -91,7 +91,9 @@ public class MainFrame extends JFrame {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					countryFile = new CountryFile(fc.getSelectedFile());
 					countryList = countryFile.getData();
-//					JOptionPane.showMessageDialog(null, countryList.get(2).getName());
+					if (countryList != null) {
+						JOptionPane.showMessageDialog(null, countryList.get(0).getCapital());
+					}
 				}
 			}
 

@@ -1,4 +1,4 @@
-package md.country;
+package md.common.country;
 /**
  * Used for storing data for a European Union country object
  * @author Fanncy

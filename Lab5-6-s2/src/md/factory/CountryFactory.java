@@ -1,6 +1,6 @@
 package md.factory;
 
-import md.country.*;
+import md.common.country.*;
 
 /**
  * Used for creating specific objects
