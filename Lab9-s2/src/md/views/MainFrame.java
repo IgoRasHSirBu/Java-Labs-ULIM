@@ -49,7 +49,6 @@ public class MainFrame extends JFrame {
 
 	// Constructor
 	public MainFrame() {
-
 		// Initialize
 		init();
 		updateAllPanels();
@@ -225,8 +224,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Update panel info
 	 */
-	private void updatePanelInfo() {// TODO:add max and min
-
+	private void updatePanelInfo() {
 		if (countryFile.isAssigned) {
 			lblWorkingInFile.setText("Working in File: \"" + countryFile.fileName + "\"");
 		} else {
