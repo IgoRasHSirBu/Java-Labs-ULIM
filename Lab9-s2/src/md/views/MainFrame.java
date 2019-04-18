@@ -40,6 +40,7 @@ public class MainFrame extends JFrame {
 	private JButton btnShowEuropeanCountries;
 	private JButton btnShowAsianCountries;
 	private JButton btnShowOtherCountries;
+	private JLabel lblWorkingInFile;
 
 	// var declaration
 	private CountryFile countryFile;
@@ -90,13 +91,10 @@ public class MainFrame extends JFrame {
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					countryFile = new CountryFile(fc.getSelectedFile());
-					countryList = countryFile.getData();
-					if (countryList != null) {
-						JOptionPane.showMessageDialog(null, countryList.get(0).getCapital());
-					}
+					countryList = countryFile.getData();// and check if it is corrupted
+					updatePanelInfo();
 				}
 			}
-
 		});
 
 		btnOpenFile.setBounds(70, 25, 150, 40);
@@ -118,18 +116,23 @@ public class MainFrame extends JFrame {
 
 		lblNumberOfCountries = new JLabel("Number of Countries:");
 		lblNumberOfCountries.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNumberOfCountries.setBounds(10, 25, 555, 40);
+		lblNumberOfCountries.setBounds(10, 65, 555, 40);
 		panelInfo.add(lblNumberOfCountries);
 
 		lblMaxCountryPop = new JLabel("Country with max population:");
 		lblMaxCountryPop.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMaxCountryPop.setBounds(10, 90, 555, 40);
+		lblMaxCountryPop.setBounds(10, 145, 555, 40);
 		panelInfo.add(lblMaxCountryPop);
 
 		lblMinCountryPop = new JLabel("Country with min population:");
 		lblMinCountryPop.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblMinCountryPop.setBounds(10, 155, 555, 40);
+		lblMinCountryPop.setBounds(10, 105, 555, 40);
 		panelInfo.add(lblMinCountryPop);
+
+		lblWorkingInFile = new JLabel("Working in File:");
+		lblWorkingInFile.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblWorkingInFile.setBounds(10, 25, 555, 40);
+		panelInfo.add(lblWorkingInFile);
 
 		panelTabelMenu = new JPanel();
 		panelTabelMenu.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -164,4 +167,23 @@ public class MainFrame extends JFrame {
 		panelQuery.add(btnShowOtherCountries);
 		setVisible(true);
 	}
+
+	/**
+	 * Update panel info
+	 */
+	private void updatePanelInfo() {// TODO:add max and min
+
+		if (countryFile.isAssigned) {
+			lblWorkingInFile.setText("Working in File: \"" + countryFile.fileName + "\"");
+		} else {
+			lblWorkingInFile.setText("Working in File: ");
+		}
+		if (countryList != null) {
+			lblNumberOfCountries.setText("Number of Countries: " + countryList.size());
+		} else {
+			lblNumberOfCountries.setText("Number of Countries: ");
+		}
+
+	}
+
 }

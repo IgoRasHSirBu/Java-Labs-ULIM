@@ -20,11 +20,13 @@ import md.common.country.*;
 public class CountryFile {
 
 	private File countryFile;
-	public boolean fileIsAssigned = false;
+	public boolean isAssigned;
+	public String fileName;
 
 	public CountryFile(File countryFile) {
 		this.countryFile = countryFile;
-//		fileIsAssigned = true;
+		this.fileName = countryFile.getName();
+		isAssigned = true;
 	}
 
 	public ArrayList<Country> getData() {
@@ -45,6 +47,9 @@ public class CountryFile {
 			} catch (ClassNotFoundException e) {
 				JOptionPane.showMessageDialog(null,
 						"File : " + countryFile.getName() + " is is corrupted, please select another file");
+				this.isAssigned = false;
+				this.countryFile = null;
+				this.fileName = null;
 				return null;
 			} finally {
 				objectInputStream.close();
@@ -68,6 +73,9 @@ public class CountryFile {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
 					"File : " + countryFile.getName() + " is corrupted, please select another file");
+			this.isAssigned = false;
+			this.countryFile = null;
+			this.fileName = null;
 			return null;
 		}
 
