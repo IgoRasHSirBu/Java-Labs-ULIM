@@ -102,6 +102,11 @@ public class MainFrame extends JFrame {
 		panelMenu.add(btnOpenFile);
 
 		btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				countryFile.saveDataInFile(countryList);
+			}
+		});
 		btnSave.setBounds(70, 90, 150, 40);
 		panelMenu.add(btnSave);
 
