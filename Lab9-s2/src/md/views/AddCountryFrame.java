@@ -6,10 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import md.common.country.*;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerListModel;
 import java.awt.Font;
@@ -205,6 +210,21 @@ public class AddCountryFrame extends JFrame {
 		panelAddCountryMenu.add(btnClose);
 
 		btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				ArrayList<Country> countryList = parrent.getCountryList();
+				// create new instance of country
+				Country newCountry = new Country(textFieldName.getText(), Double.valueOf(textFieldPopulation.getText()),
+						textFieldCapital.getText(), textFieldContinent.getText(), textFieldGovernment.getText(),
+						textFieldLeader.getText());
+				countryList.add(newCountry);
+				JOptionPane.showMessageDialog(parrent, "New Country was added!");
+				parrent.updateAllPanels(false, false);// Enable panels of MainFrame
+				parrent.updateDataTabel();
+				AddCountryFrame.this.dispose();
+			}
+		});
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnAdd.setBounds(424, 587, 130, 40);
 		panelAddCountryMenu.add(btnAdd);

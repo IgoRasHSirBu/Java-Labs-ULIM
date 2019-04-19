@@ -29,6 +29,7 @@ public class CountryFile {
 		isAssigned = true;
 	}
 
+	@SuppressWarnings("unchecked")
 	public ArrayList<Country> getData() {
 
 		ArrayList<Country> countryList = new ArrayList<Country>();
@@ -36,15 +37,10 @@ public class CountryFile {
 
 		try {
 			objectInputStream = new ObjectInputStream(new FileInputStream(countryFile));
-
 			try {
-				Country c = (Country) objectInputStream.readObject();
-				while (c != null) {
-					countryList.add(c);
-					c = (Country) objectInputStream.readObject();
-				}
+				countryList = (ArrayList<Country>) objectInputStream.readObject();
 				return countryList;
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null,
 						"File : " + countryFile.getName() + " is is corrupted, please select another file");
 				this.isAssigned = false;
@@ -66,7 +62,7 @@ public class CountryFile {
 		} catch (EOFException e) {
 			if (countryList.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Empty!");
-				return null;
+				return new ArrayList<Country>();
 			} else {
 				return countryList;
 			}

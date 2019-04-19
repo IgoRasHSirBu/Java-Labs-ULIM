@@ -184,15 +184,15 @@ public class MainFrame extends JFrame {
 	/**
 	 * Update date in to tabel
 	 */
-	private void updateDataTabel() {
+	public void updateDataTabel() {
 		// deleting all rows
 		for (int i = dTabelDataModel.getRowCount() - 1; i >= 0; i--) {
 			dTabelDataModel.removeRow(i);
 		}
 		// adding new/update rows
-		if (countryList != null && countryFile.isAssigned) {
+		if ((countryList.size() > 0) && countryFile.isAssigned) {
 			for (int i = 0; i < countryList.size(); i++) {
-				dTabelDataModel.addRow(new String[] { Integer.toString(i), countryList.get(i).getName(),
+				dTabelDataModel.addRow(new String[] { Integer.toString(i + 1), countryList.get(i).getName(),
 						countryList.get(i).getCapital(), countryList.get(i).getLeader(),
 						countryList.get(i).getGovernment(), countryList.get(i).getContinent(),
 						Double.toString(countryList.get(i).getPopulation()) });
@@ -246,7 +246,7 @@ public class MainFrame extends JFrame {
 		} else {
 			lblWorkingInFile.setText("Working in File: ");
 		}
-		if (countryList != null) {
+		if ((countryList.size() > 0)) {
 			ArrayList<Country> sortedCountries = new ArrayList<Country>(countryList);
 			sortedCountries.sort(new PopulationComparator());
 			int max = sortedCountries.size() - 1;
@@ -261,5 +261,13 @@ public class MainFrame extends JFrame {
 			lblMaxCountryPop.setText("Country with max population: ");
 			lblMinCountryPop.setText("Country with min population: ");
 		}
+	}
+
+	/**
+	 * 
+	 * @return countryList
+	 */
+	public ArrayList<Country> getCountryList() {
+		return this.countryList;
 	}
 }
