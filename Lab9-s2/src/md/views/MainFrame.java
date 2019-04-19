@@ -190,7 +190,7 @@ public class MainFrame extends JFrame {
 			dTabelDataModel.removeRow(i);
 		}
 		// adding new/update rows
-		if ((countryList.size() > 0) && countryFile.isAssigned) {
+		if ((countryList != null) && (countryList.size() > 0) && countryFile.isAssigned) {
 			for (int i = 0; i < countryList.size(); i++) {
 				dTabelDataModel.addRow(new String[] { Integer.toString(i + 1), countryList.get(i).getName(),
 						countryList.get(i).getCapital(), countryList.get(i).getLeader(),
@@ -246,7 +246,7 @@ public class MainFrame extends JFrame {
 		} else {
 			lblWorkingInFile.setText("Working in File: ");
 		}
-		if ((countryList.size() > 0)) {
+		if (countryList != null && (countryList.size() > 0)) {
 			ArrayList<Country> sortedCountries = new ArrayList<Country>(countryList);
 			sortedCountries.sort(new PopulationComparator());
 			int max = sortedCountries.size() - 1;
