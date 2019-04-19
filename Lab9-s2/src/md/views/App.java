@@ -10,7 +10,7 @@ public class App {
 			public void run() {
 				try {
 					MainFrame jMainFrame = new MainFrame();
-					jMainFrame.setTitle("Country DataBase @Alpha-0.33");
+					jMainFrame.setTitle("Country DataBase @Alpha-1.0");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

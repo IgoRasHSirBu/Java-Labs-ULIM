@@ -97,7 +97,7 @@ public class RemoveCountryFrame extends JFrame {
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtrInformationAboutCountry
-						.setText("<Information about Country>\nCountry " + foundedCountry.getName() + " was deleted");
+						.setText("<Information about Country>\nCountry " + foundedCountry.getName() + " has been deleted");
 				btnRemove.setEnabled(false);
 				countryList.remove(foundedCountry);
 			}

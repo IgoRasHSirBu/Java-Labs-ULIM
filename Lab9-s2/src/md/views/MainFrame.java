@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -15,10 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import md.common.country.*;
+import md.common.country.Country;
+import md.common.country.PopulationComparator;
 import md.common.file.CountryFile;
 
 public class MainFrame extends JFrame {
@@ -40,13 +43,14 @@ public class MainFrame extends JFrame {
 	private JPanel panelQuery;
 	private JButton btnShowEuropeanCountries;
 	private JButton btnShowAsianCountries;
-	private JButton btnShowOtherCountries;
+	private JButton btnShowUeCountries;
 	private JLabel lblWorkingInFile;
 
 	// var declaration
 	private CountryFile countryFile;
 	private DefaultTableModel dTabelDataModel;
 	private ArrayList<Country> countryList;
+	private JLabel lblVersion;
 
 	// Constructor
 	public MainFrame() {
@@ -72,6 +76,7 @@ public class MainFrame extends JFrame {
 		String[] header = { "No.", "Name", "Capital", "Leader", "Government", "Continent", "Population (Mln.)" };
 		dTabelDataModel = new DefaultTableModel(header, 0);
 		tableForCountryData = new JTable(dTabelDataModel);
+		tableForCountryData.setEnabled(false);
 		scrollPaneForTable.setViewportView(tableForCountryData);
 
 		panelMenu = new JPanel();
@@ -166,6 +171,7 @@ public class MainFrame extends JFrame {
 				addCountryFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 					@Override // JFrame can be closed by btn
 					public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+						updateAllPanels(false, false);
 					}
 				});
 			}
@@ -191,6 +197,12 @@ public class MainFrame extends JFrame {
 		btnRemove.setBounds(10, 62, 100, 40);
 		panelTabelMenu.add(btnRemove);
 
+		lblVersion = new JLabel("Alpha-1.0");
+		lblVersion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVersion.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		lblVersion.setBounds(10, 465, 100, 35);
+		panelTabelMenu.add(lblVersion);
+
 		panelQuery = new JPanel();
 		panelQuery.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelQuery.setBounds(310, 11, 290, 220);
@@ -198,16 +210,52 @@ public class MainFrame extends JFrame {
 		panelQuery.setLayout(null);
 
 		btnShowEuropeanCountries = new JButton("Show European Countries");
+		btnShowEuropeanCountries.addActionListener(new ActionListener() {// show in table data
+			public void actionPerformed(ActionEvent arg0) {
+				updateAllPanels(true, true);
+				ShowCountryFrame showCountryFrame = new ShowCountryFrame(MainFrame.this, "European Countries");
+				showCountryFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+					@Override // JFrame can be closed by btn
+					public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+						updateAllPanels(false, false);
+					}
+				});
+			}
+		});
 		btnShowEuropeanCountries.setBounds(70, 25, 160, 40);
 		panelQuery.add(btnShowEuropeanCountries);
 
 		btnShowAsianCountries = new JButton("Show Asian Countries");
+		btnShowAsianCountries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				updateAllPanels(true, true);
+				ShowCountryFrame showCountryFrame = new ShowCountryFrame(MainFrame.this, "Asian Countries");
+				showCountryFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+					@Override // JFrame can be closed by btn
+					public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+						updateAllPanels(false, false);
+					}
+				});
+			}
+		});
 		btnShowAsianCountries.setBounds(70, 90, 160, 40);
 		panelQuery.add(btnShowAsianCountries);
 
-		btnShowOtherCountries = new JButton("Show other Countries");
-		btnShowOtherCountries.setBounds(70, 155, 160, 40);
-		panelQuery.add(btnShowOtherCountries);
+		btnShowUeCountries = new JButton("Show UE Countries");
+		btnShowUeCountries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateAllPanels(true, true);
+				ShowCountryFrame showCountryFrame = new ShowCountryFrame(MainFrame.this, "EU Countries");
+				showCountryFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+					@Override // JFrame can be closed by btn
+					public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+						updateAllPanels(false, false);
+					}
+				});
+			}
+		});
+		btnShowUeCountries.setBounds(70, 155, 160, 40);
+		panelQuery.add(btnShowUeCountries);
 		// center window
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -245,8 +293,8 @@ public class MainFrame extends JFrame {
 			btnRemove.setEnabled(false);
 			btnShowAsianCountries.setEnabled(false);
 			btnShowEuropeanCountries.setEnabled(false);
-			btnShowOtherCountries.setEnabled(false);
-			tableForCountryData.setEnabled(false);
+			btnShowUeCountries.setEnabled(false);
+//			tableForCountryData.setEnabled(false);
 			btnSave.setEnabled(false);
 			btnSaveAs.setEnabled(false);
 			lblWorkingInFile.setEnabled(false);
@@ -259,8 +307,8 @@ public class MainFrame extends JFrame {
 			btnRemove.setEnabled(true);
 			btnShowAsianCountries.setEnabled(true);
 			btnShowEuropeanCountries.setEnabled(true);
-			btnShowOtherCountries.setEnabled(true);
-			tableForCountryData.setEnabled(true);
+			btnShowUeCountries.setEnabled(true);
+//			tableForCountryData.setEnabled(true);
 			btnSave.setEnabled(true);
 			btnSaveAs.setEnabled(true);
 			lblWorkingInFile.setEnabled(true);

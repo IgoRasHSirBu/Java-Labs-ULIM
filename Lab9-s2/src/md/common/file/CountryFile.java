@@ -9,8 +9,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
-import md.common.country.*;
+
+import md.common.country.Country;
 
 /**
  * Operates with File and Country objects
@@ -61,6 +63,7 @@ public class CountryFile {
 				return null;
 			}
 			JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " Has been created!");
+			isAssigned = true;
 			return new ArrayList<Country>();
 		} catch (EOFException e) {
 			if (countryList.isEmpty()) {
