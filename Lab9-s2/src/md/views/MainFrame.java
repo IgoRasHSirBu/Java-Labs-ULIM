@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		// Initialize
 		init();
-		updateAllPanels();
+		updateAllPanels(true, false);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame {
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
 					countryFile = new CountryFile(fc.getSelectedFile());
 					countryList = countryFile.getData();// and check if it is corrupted
-					updateAllPanels();
+					updateAllPanels(false, false);
 					updatePanelInfo();
 					updateDataTabel();
 				}
@@ -141,7 +141,19 @@ public class MainFrame extends JFrame {
 		getContentPane().add(panelTabelMenu);
 		panelTabelMenu.setLayout(null);
 
-		btnAdd = new JButton("Add");
+		btnAdd = new JButton("Add");// open AddCountryFrame
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {// MainFrame.this - Accessing methods
+				AddCountryFrame addCountryFrame = new AddCountryFrame(MainFrame.this);
+				updateAllPanels(true, true);
+				addCountryFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+					@Override // JFrame can be closed by btn
+					public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+						updateAllPanels(false, false);
+					}
+				});
+			}
+		});
 		btnAdd.setBounds(10, 11, 100, 40);
 		panelTabelMenu.add(btnAdd);
 
@@ -191,8 +203,11 @@ public class MainFrame extends JFrame {
 	/**
 	 * Enable/Disable components
 	 */
-	private void updateAllPanels() {
-		if (countryFile == null || !countryFile.isAssigned) {
+	public void updateAllPanels(boolean disable, boolean disableBtnOpenFile) {
+		if (countryFile == null || !countryFile.isAssigned || disable) {
+			if (disableBtnOpenFile) {
+				btnOpenFile.setEnabled(false);// to prevent opening a new file
+			}
 			btnAdd.setEnabled(false);
 			btnRemove.setEnabled(false);
 			btnShowAsianCountries.setEnabled(false);
@@ -206,6 +221,7 @@ public class MainFrame extends JFrame {
 			lblMinCountryPop.setEnabled(false);
 			lblMaxCountryPop.setEnabled(false);
 		} else {
+			btnOpenFile.setEnabled(true);
 			btnAdd.setEnabled(true);
 			btnRemove.setEnabled(true);
 			btnShowAsianCountries.setEnabled(true);

@@ -30,29 +30,43 @@ public class AddCountryFrame extends JFrame {
 	private JTextField textFieldPopulation;
 	private JTextField textFieldCurrency;
 	private JTextField textFieldYearMember;
+	private JPanel panelAddCountryMenu;
+	private JComboBox<String> comboBox;
+	private JLabel lblSelectCountryType;
+	private JLabel lblCapital;
+	private JLabel lblLeader;
+	private JLabel lblGovernment;
+	private JLabel lblContinent;
+	private JLabel lblName;
+	private JLabel lblPopulation;
+	private JLabel lblCurrency;
+	private JLabel lblEuYearMember;
+	private JButton btnClose;
+	private JButton btnAdd;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddCountryFrame frame = new AddCountryFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AddCountryFrame frame = new AddCountryFrame();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public AddCountryFrame() {// TODO: add components
+	public AddCountryFrame(MainFrame parrent) {// TODO: add components
 
-//		init();
+		init(parrent);
+
+	}
+
+	private void init(MainFrame parrent) {
 		setSize(600, 800);
 		this.setTitle("Country DataBase: Add Country");
 		contentPane = new JPanel();
@@ -60,12 +74,12 @@ public class AddCountryFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel panelAddCountryMenu = new JPanel();
+		panelAddCountryMenu = new JPanel();
 		panelAddCountryMenu.setBounds(10, 11, 564, 739);
 		contentPane.add(panelAddCountryMenu);
 		panelAddCountryMenu.setLayout(null);
 
-		JComboBox<String> comboBox = new JComboBox<>();
+		comboBox = new JComboBox<>();
 		comboBox.setMaximumRowCount(3);
 		comboBox.setModel(
 				new DefaultComboBoxModel<String>(new String[] { "Country", "European Country", "Asian Country" }));
@@ -123,74 +137,78 @@ public class AddCountryFrame extends JFrame {
 		panelAddCountryMenu.add(textFieldYearMember);
 		textFieldYearMember.setColumns(10);
 
-		JLabel lblSelectCountryType = new JLabel("Select Country Type:");
+		lblSelectCountryType = new JLabel("Select Country Type:");
 		lblSelectCountryType.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblSelectCountryType.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSelectCountryType.setBounds(10, 11, 263, 53);
 		panelAddCountryMenu.add(lblSelectCountryType);
 
-		JLabel lblCapital = new JLabel("Capital:");
+		lblCapital = new JLabel("Capital:");
 		lblCapital.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCapital.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCapital.setBounds(10, 139, 263, 53);
 		panelAddCountryMenu.add(lblCapital);
 
-		JLabel lblLeader = new JLabel("Leader:");
+		lblLeader = new JLabel("Leader:");
 		lblLeader.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblLeader.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblLeader.setBounds(10, 203, 263, 53);
 		panelAddCountryMenu.add(lblLeader);
 
-		JLabel lblGovernment = new JLabel("Government:");
+		lblGovernment = new JLabel("Government:");
 		lblGovernment.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblGovernment.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblGovernment.setBounds(10, 265, 263, 56);
 		panelAddCountryMenu.add(lblGovernment);
 
-		JLabel lblContinent = new JLabel("Continent:");
+		lblContinent = new JLabel("Continent:");
 		lblContinent.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblContinent.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblContinent.setBounds(10, 331, 263, 53);
 		panelAddCountryMenu.add(lblContinent);
 
-		JLabel lblName = new JLabel("Name:");
+		lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblName.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblName.setBounds(10, 75, 263, 53);
 		panelAddCountryMenu.add(lblName);
 
-		JLabel lblPopulation = new JLabel("Population:");
+		lblPopulation = new JLabel("Population:");
 		lblPopulation.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPopulation.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPopulation.setBounds(10, 395, 263, 53);
 		panelAddCountryMenu.add(lblPopulation);
 
-		JLabel lblCurrency = new JLabel("Currency:");
+		lblCurrency = new JLabel("Currency:");
 		lblCurrency.setEnabled(false);
 		lblCurrency.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCurrency.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCurrency.setBounds(10, 458, 263, 54);
 		panelAddCountryMenu.add(lblCurrency);
 
-		JLabel lblEuYearMember = new JLabel("EU Year Member:");
+		lblEuYearMember = new JLabel("EU Year Member:");
 		lblEuYearMember.setEnabled(false);
 		lblEuYearMember.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblEuYearMember.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEuYearMember.setBounds(10, 523, 263, 45);
 		panelAddCountryMenu.add(lblEuYearMember);
-		
-		JButton btnClose = new JButton("Close");
+
+		btnClose = new JButton("Close");// close AddCountryFrame
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				parrent.updateAllPanels(false, false);// Enable panels of MainFrame
+				AddCountryFrame.this.dispose();
+			}
+		});
 		btnClose.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnClose.setBounds(284, 587, 130, 40);
 		panelAddCountryMenu.add(btnClose);
-		
-		JButton btnAdd = new JButton("Add");
+
+		btnAdd = new JButton("Add");
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnAdd.setBounds(424, 587, 130, 40);
 		panelAddCountryMenu.add(btnAdd);
-	}
 
-	private void init() {
-
+		setVisible(true);
 	}
 }
