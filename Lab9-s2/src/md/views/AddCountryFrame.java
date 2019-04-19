@@ -1,31 +1,30 @@
 package md.views;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import md.common.country.*;
-
-import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
-import java.awt.Font;
-import javax.swing.JComboBox;
+
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import md.common.country.AsianCountry;
+import md.common.country.Country;
+import md.common.country.EuropeanCountry;
+import md.common.country.EuropeanUnionCountry;
 
 public class AddCountryFrame extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldName;
 	private JTextField textFieldCapital;
@@ -51,23 +50,10 @@ public class AddCountryFrame extends JFrame {
 	private JTextField textFieldArea;
 	private JLabel lblArea;
 
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					AddCountryFrame frame = new AddCountryFrame();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	/**
 	 * Create the frame.
 	 */
-	public AddCountryFrame(MainFrame parrent) {// TODO: add components
+	public AddCountryFrame(MainFrame parrent) {
 		init(parrent);
 	}
 
@@ -358,7 +344,9 @@ public class AddCountryFrame extends JFrame {
 		lblArea.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblArea.setBounds(10, 587, 263, 45);
 		panelAddCountryMenu.add(lblArea);
-
+		// center window
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		setVisible(true);
 	}
 }

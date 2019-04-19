@@ -1,17 +1,16 @@
 package md.views;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import md.common.country.*;
-
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class RemoveCountryFrame extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldNameToFind;
 	private JPanel panelMenu;
@@ -67,7 +66,7 @@ public class RemoveCountryFrame extends JFrame {
 				if (countryToFind.length() >= 3) {
 					countryToFind = countryToFind.substring(0, 1).toUpperCase() + countryToFind.substring(1, 3);
 				} else {
-					countryToFind = "Unknown";
+					countryToFind = "Unknown";// (same as in constructor)
 					JOptionPane.showMessageDialog(null, "Set to \"Unknown\", Name must contains min 3 characters");
 				}
 				countryList = parrent.getCountryList();
@@ -87,8 +86,6 @@ public class RemoveCountryFrame extends JFrame {
 				} else {
 					txtrInformationAboutCountry.setText("<Information about Country>\nNo Country found");
 				}
-
-//				JOptionPane.showMessageDialog(null, "Was found: " + foundedCountry.size());
 			}
 		});
 		btnFind.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -127,7 +124,9 @@ public class RemoveCountryFrame extends JFrame {
 		txtrInformationAboutCountry.setEditable(false);
 		txtrInformationAboutCountry.setBounds(10, 11, 264, 265);
 		panelInfo.add(txtrInformationAboutCountry);
-
+		// center window
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		setVisible(true);
 	}
 }

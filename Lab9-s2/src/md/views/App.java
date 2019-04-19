@@ -16,18 +16,5 @@ public class App {
 				}
 			}
 		});
-
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					AddCountryFrame frame = new AddCountryFrame();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-
 	}
-
 }

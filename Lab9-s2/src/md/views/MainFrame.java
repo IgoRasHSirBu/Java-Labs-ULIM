@@ -1,16 +1,16 @@
 package md.views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,7 +21,7 @@ import md.common.country.*;
 import md.common.file.CountryFile;
 
 public class MainFrame extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	// Components of layout
 	private JTable tableForCountryData;
 	private JScrollPane scrollPaneForTable;
@@ -58,7 +58,6 @@ public class MainFrame extends JFrame {
 	 * Initialize components of layout
 	 */
 	private void init() {
-
 		setResizable(false);
 		setSize(1200, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -196,6 +195,9 @@ public class MainFrame extends JFrame {
 		btnShowOtherCountries = new JButton("Show other Countries");
 		btnShowOtherCountries.setBounds(70, 155, 160, 40);
 		panelQuery.add(btnShowOtherCountries);
+		// center window
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		setVisible(true);
 	}
 
