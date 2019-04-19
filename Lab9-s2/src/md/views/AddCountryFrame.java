@@ -36,7 +36,7 @@ public class AddCountryFrame extends JFrame {
 	private JTextField textFieldCurrency;
 	private JTextField textFieldYearMember;
 	private JPanel panelAddCountryMenu;
-	private JComboBox<String> comboBox;
+	private JComboBox<String> comboBoxCountryType;
 	private JLabel lblSelectCountryType;
 	private JLabel lblCapital;
 	private JLabel lblLeader;
@@ -48,6 +48,8 @@ public class AddCountryFrame extends JFrame {
 	private JLabel lblEuYearMember;
 	private JButton btnClose;
 	private JButton btnAdd;
+	private JTextField textFieldArea;
+	private JLabel lblArea;
 
 //	public static void main(String[] args) {
 //		EventQueue.invokeLater(new Runnable() {
@@ -66,14 +68,13 @@ public class AddCountryFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public AddCountryFrame(MainFrame parrent) {// TODO: add components
-
 		init(parrent);
-
 	}
 
 	private void init(MainFrame parrent) {
 		setSize(600, 800);
 		this.setTitle("Country DataBase: Add Country");
+		this.setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -84,13 +85,63 @@ public class AddCountryFrame extends JFrame {
 		contentPane.add(panelAddCountryMenu);
 		panelAddCountryMenu.setLayout(null);
 
-		comboBox = new JComboBox<>();
-		comboBox.setMaximumRowCount(3);
-		comboBox.setModel(
-				new DefaultComboBoxModel<String>(new String[] { "Country", "European Country", "Asian Country" }));
-		comboBox.setFont(new Font("Tahoma", Font.BOLD, 16));
-		comboBox.setBounds(283, 11, 271, 53);
-		panelAddCountryMenu.add(comboBox);
+		comboBoxCountryType = new JComboBox<>();
+		comboBoxCountryType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String seletctedType = (String) comboBoxCountryType.getSelectedItem();
+				if (seletctedType.equals("Country")) {
+					textFieldCurrency.setEnabled(false);
+					lblCurrency.setEnabled(false);
+					textFieldYearMember.setEnabled(false);
+					lblEuYearMember.setEnabled(false);
+					textFieldContinent.setEnabled(true);
+					lblContinent.setEnabled(true);
+					textFieldContinent.setText(null);
+					textFieldArea.setEnabled(false);
+					lblArea.setEnabled(false);
+
+				}
+				if (seletctedType.equals("European Country")) {
+					textFieldCurrency.setEnabled(true);
+					textFieldYearMember.setEnabled(false);
+					textFieldContinent.setEnabled(false);
+					lblContinent.setEnabled(false);
+					textFieldArea.setEnabled(true);
+					lblArea.setEnabled(true);
+					lblCurrency.setEnabled(true);
+					lblEuYearMember.setEnabled(false);
+					textFieldContinent.setText("Europa");
+				}
+				if (seletctedType.equals("Asian Country")) {
+					textFieldCurrency.setEnabled(true);
+					textFieldYearMember.setEnabled(false);
+					textFieldContinent.setEnabled(false);
+					lblContinent.setEnabled(false);
+					textFieldArea.setEnabled(true);
+					lblArea.setEnabled(true);
+					lblCurrency.setEnabled(true);
+					lblEuYearMember.setEnabled(false);
+					textFieldContinent.setText("Asia");
+				}
+				if (seletctedType.equals("EU Country")) {
+					textFieldCurrency.setEnabled(true);
+					textFieldYearMember.setEnabled(true);
+					textFieldContinent.setEnabled(false);
+					lblContinent.setEnabled(false);
+					textFieldArea.setEnabled(true);
+					lblArea.setEnabled(true);
+					lblCurrency.setEnabled(true);
+					lblEuYearMember.setEnabled(true);
+					textFieldContinent.setText("Europa");
+				}
+			}
+		});
+		comboBoxCountryType.setMaximumRowCount(4);
+		comboBoxCountryType.setModel(new DefaultComboBoxModel<String>(
+				new String[] { "Country", "European Country", "Asian Country", "EU Country" }));
+		comboBoxCountryType.setFont(new Font("Tahoma", Font.BOLD, 16));
+		comboBoxCountryType.setBounds(283, 11, 271, 53);
+		panelAddCountryMenu.add(comboBoxCountryType);
 
 		textFieldName = new JTextField();
 		textFieldName.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -206,28 +257,107 @@ public class AddCountryFrame extends JFrame {
 			}
 		});
 		btnClose.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnClose.setBounds(284, 587, 130, 40);
+		btnClose.setBounds(283, 640, 130, 40);
 		panelAddCountryMenu.add(btnClose);
 
 		btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 				ArrayList<Country> countryList = parrent.getCountryList();
 				// create new instance of country
-				Country newCountry = new Country(textFieldName.getText(), Double.valueOf(textFieldPopulation.getText()),
-						textFieldCapital.getText(), textFieldContinent.getText(), textFieldGovernment.getText(),
-						textFieldLeader.getText());
-				countryList.add(newCountry);
+				String seletctedType = (String) comboBoxCountryType.getSelectedItem();// find country type
+				if (seletctedType.equals("Country")) {
+					Double population;
+					try {
+						population = Double.valueOf(textFieldPopulation.getText());
+					} catch (NumberFormatException e) {
+						population = 0.0;
+					}
+					Country newCountry = new Country(textFieldName.getText(), population, textFieldCapital.getText(),
+							textFieldContinent.getText(), textFieldGovernment.getText(), textFieldLeader.getText());
+					countryList.add(newCountry);
+				}
+				if (seletctedType.equals("European Country")) {
+					Double population, area;
+					try {
+						population = Double.valueOf(textFieldPopulation.getText());
+					} catch (NumberFormatException e) {
+						population = 0.0;
+					}
+					try {
+						area = Double.valueOf(textFieldArea.getText());
+					} catch (NumberFormatException e) {
+						area = 0.0;
+					}
+					EuropeanCountry newCountry = new EuropeanCountry(textFieldName.getText(), population,
+							textFieldCapital.getText(), textFieldContinent.getText(), textFieldGovernment.getText(),
+							textFieldLeader.getText(), area, textFieldCurrency.getText());
+					countryList.add(newCountry);
+				}
+				if (seletctedType.equals("Asian Country")) {
+					Double population, area;
+					try {
+						population = Double.valueOf(textFieldPopulation.getText());
+					} catch (NumberFormatException e) {
+						population = 0.0;
+					}
+					try {
+						area = Double.valueOf(textFieldArea.getText());
+					} catch (NumberFormatException e) {
+						area = 0.0;
+					}
+					AsianCountry newCountry = new AsianCountry(textFieldName.getText(), population,
+							textFieldCapital.getText(), textFieldContinent.getText(), textFieldGovernment.getText(),
+							textFieldLeader.getText(), area, textFieldCurrency.getText());
+					countryList.add(newCountry);
+				}
+				if (seletctedType.equals("EU Country")) {
+					Double population, area;
+					int year;
+					try {
+						population = Double.valueOf(textFieldPopulation.getText());
+					} catch (NumberFormatException e) {
+						population = 0.0;
+					}
+					try {
+						area = Double.valueOf(textFieldArea.getText());
+					} catch (NumberFormatException e) {
+						area = 0.0;
+					}
+					try {
+						year = Integer.valueOf(textFieldYearMember.getText());
+					} catch (NumberFormatException e) {
+						year = 0;
+					}
+					EuropeanUnionCountry newCountry = new EuropeanUnionCountry(textFieldName.getText(), population,
+							textFieldCapital.getText(), textFieldContinent.getText(), textFieldGovernment.getText(),
+							textFieldLeader.getText(), area, textFieldCurrency.getText(), year);
+					countryList.add(newCountry);
+				}
 				JOptionPane.showMessageDialog(parrent, "New Country was added!");
 				parrent.updateAllPanels(false, false);// Enable panels of MainFrame
+				parrent.updatePanelInfo();
 				parrent.updateDataTabel();
 				AddCountryFrame.this.dispose();
 			}
 		});
 		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAdd.setBounds(424, 587, 130, 40);
+		btnAdd.setBounds(424, 640, 130, 40);
 		panelAddCountryMenu.add(btnAdd);
+
+		textFieldArea = new JTextField();
+		textFieldArea.setFont(new Font("Tahoma", Font.BOLD, 16));
+		textFieldArea.setEnabled(false);
+		textFieldArea.setBounds(283, 587, 271, 45);
+		panelAddCountryMenu.add(textFieldArea);
+		textFieldArea.setColumns(10);
+
+		lblArea = new JLabel("Area:");
+		lblArea.setEnabled(false);
+		lblArea.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblArea.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblArea.setBounds(10, 587, 263, 45);
+		panelAddCountryMenu.add(lblArea);
 
 		setVisible(true);
 	}

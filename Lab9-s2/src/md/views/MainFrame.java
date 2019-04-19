@@ -240,7 +240,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Update panel info
 	 */
-	private void updatePanelInfo() {
+	public void updatePanelInfo() {
 		if (countryFile.isAssigned) {
 			lblWorkingInFile.setText("Working in File: \"" + countryFile.fileName + "\"");
 		} else {
