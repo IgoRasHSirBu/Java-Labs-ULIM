@@ -4,28 +4,25 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 import md.common.country.AsianCountry;
 import md.common.country.Country;
 import md.common.country.EuropeanCountry;
 import md.common.country.EuropeanUnionCountry;
 
 public class ShowCountryFrame extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tableDataCountry;
 	private ArrayList<Country> countryList;
 	private ArrayList<Country> countryListToShow;
 	private DefaultTableModel dTabelDataModel;
 	private JScrollPane scrollPaneForDataCountry;
-//	private CountryFile countryFile;
 
 	/**
 	 * Create the frame.

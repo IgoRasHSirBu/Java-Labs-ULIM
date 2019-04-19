@@ -45,8 +45,6 @@ public class MainFrame extends JFrame {
 	private JButton btnShowAsianCountries;
 	private JButton btnShowUeCountries;
 	private JLabel lblWorkingInFile;
-
-	// var declaration
 	private CountryFile countryFile;
 	private DefaultTableModel dTabelDataModel;
 	private ArrayList<Country> countryList;
@@ -263,7 +261,7 @@ public class MainFrame extends JFrame {
 	}
 
 	/**
-	 * Update date in to tabel
+	 * Update data in to table
 	 */
 	public void updateDataTabel() {
 		// deleting all rows

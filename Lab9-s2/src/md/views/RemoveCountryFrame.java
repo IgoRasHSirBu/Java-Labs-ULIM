@@ -1,23 +1,22 @@
 package md.views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import md.common.country.*;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import md.common.country.Country;
 
 public class RemoveCountryFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -96,8 +95,8 @@ public class RemoveCountryFrame extends JFrame {
 		// Delete selected Country from list
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtrInformationAboutCountry
-						.setText("<Information about Country>\nCountry " + foundedCountry.getName() + " has been deleted");
+				txtrInformationAboutCountry.setText(
+						"<Information about Country>\nCountry " + foundedCountry.getName() + " has been deleted");
 				btnRemove.setEnabled(false);
 				countryList.remove(foundedCountry);
 			}

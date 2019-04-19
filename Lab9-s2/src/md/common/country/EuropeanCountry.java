@@ -9,7 +9,6 @@ import java.util.Arrays;
  * @author Fanncy
  */
 public class EuropeanCountry extends Country {
-
 	private static final long serialVersionUID = 1L;
 	private double area;
 	private String currency;
