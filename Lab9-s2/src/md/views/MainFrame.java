@@ -154,7 +154,6 @@ public class MainFrame extends JFrame {
 				addCountryFrame.addWindowListener(new java.awt.event.WindowAdapter() {
 					@Override // JFrame can be closed by btn
 					public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-						updateAllPanels(false, false);
 					}
 				});
 			}
@@ -163,6 +162,20 @@ public class MainFrame extends JFrame {
 		panelTabelMenu.add(btnAdd);
 
 		btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RemoveCountryFrame removeCountryFrame = new RemoveCountryFrame(MainFrame.this);
+				updateAllPanels(true, true);
+				removeCountryFrame.addWindowListener(new java.awt.event.WindowAdapter() {
+					@Override // JFrame can be closed by btn
+					public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+						updateAllPanels(false, false);
+						updatePanelInfo();
+						updateDataTabel();
+					}
+				});
+			}
+		});
 		btnRemove.setBounds(10, 62, 100, 40);
 		panelTabelMenu.add(btnRemove);
 
