@@ -68,6 +68,7 @@ public class CountryFile {
 		} catch (EOFException e) {
 			if (countryList.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "File : " + countryFile.getName() + " is Empty!");
+				isAssigned = true;
 				return new ArrayList<Country>();
 			} else {
 				return countryList;
