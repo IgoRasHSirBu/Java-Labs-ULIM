@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -110,6 +111,18 @@ public class MainFrame extends JFrame {
 		panelMenu.add(btnSave);
 
 		btnSaveAs = new JButton("Save As");
+		btnSaveAs.addActionListener(new ActionListener() {// save in a file
+			public void actionPerformed(ActionEvent e) {
+
+				final JFileChooser fc = new JFileChooser();
+				int returnVal = fc.showOpenDialog(MainFrame.this);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					CountryFile copyFile = new CountryFile(fc.getSelectedFile());
+					copyFile.saveDataInFile(countryList);
+					JOptionPane.showMessageDialog(null, "Copied in file: " + copyFile.fileName);
+				}
+			}
+		});
 		btnSaveAs.setBounds(70, 155, 150, 40);
 		panelMenu.add(btnSaveAs);
 
